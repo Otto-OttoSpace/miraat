@@ -1,0 +1,22 @@
+# rtlint
+
+> Find & fix the RTL/Arabic bugs AI code tools introduce.
+
+rtlint is a zero-dependency CLI + MCP server that scans React / Next / Tailwind / CSS
+for right-to-left (Arabic) mistakes AI code generators make — physical CSS/Tailwind
+(`ml-4`, `text-left`, `margin-left`), hard-coded `dir="ltr"`, un-mirrored directional
+icons, Latin-only fonts — auto-fixes the mechanical ones, and flags the rest for a human.
+
+## Use it
+- CLI: `npx github:moradothmanepro-OTTO/rtlint . --fix`
+- MCP server: run `rtlint-mcp` (tools: `rtl_scan`, `rtl_check_code`) so agents call it in-loop
+- AI rule file: `rtlint --init-rules` writes RTL-RULES.md
+
+## Rules for any agent writing Arabic / RTL UI
+Use logical CSS (`margin-inline-start`, `text-align: start`) and logical Tailwind
+(`ms-/me-/ps-/pe-/start-/end-/text-start`). Set `dir` dynamically. Mirror directional
+icons only. Use an Arabic font with a fallback; Arabic body >= 16px, line-height >= 1.5.
+
+## Links
+- Repo: https://github.com/moradothmanepro-OTTO/rtlint
+- Home: https://rtl.qabas.gift

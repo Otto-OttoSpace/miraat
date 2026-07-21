@@ -1,0 +1,18 @@
+{
+  "name": "rtlint",
+  "owner": { "name": "Othmane Morad" },
+  "metadata": {
+    "description": "Find & fix the RTL/Arabic bugs AI code tools introduce.",
+    "version": "0.3.0"
+  },
+  "plugins": [
+    {
+      "name": "rtlint",
+      "description": "Scan & auto-fix RTL/Arabic bugs (physical CSS/Tailwind, un-mirrored icons, hard-coded dir) via the rtlint MCP server.",
+      "source": "./",
+      "mcpServers": {
+        "rtlint": { "command": "node", "args": ["./mcp/rtlint-mcp.js"] }
+      }
+    }
+  ]
+}
