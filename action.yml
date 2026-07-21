@@ -1,0 +1,21 @@
+name: 'rtlint'
+description: 'Find & fix the RTL/Arabic bugs AI code tools introduce'
+author: 'Othmane Morad'
+branding:
+  icon: 'globe'
+  color: 'green'
+inputs:
+  path:
+    description: 'File or directory to scan'
+    default: '.'
+  fix:
+    description: 'Apply safe auto-fixes and fail if any remain'
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: |
+        FLAG=""
+        if [ "${{ inputs.fix }}" = "true" ]; then FLAG="--fix"; fi
+        node "${{ github.action_path }}/bin/rtlint.js" "${{ inputs.path }}" $FLAG

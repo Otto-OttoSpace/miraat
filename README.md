@@ -40,6 +40,29 @@ npx rtlint . --init-rules   # write RTL-RULES.md for your AI agent
 
 The mechanical half of RTL — logical properties, mirrored utilities — is now commodity (shadcn and Tailwind ship it). **rtlint gives you that for free.** But the half that actually makes Arabic *feel right* — mirroring the correct icons, Arabic typographic scale and font pairing, bidi edge-cases, Arabic-Indic numerals, cultural correctness — takes native judgment. rtlint flags those; it doesn't guess. That judgment is a service, not a regex — see the roadmap.
 
+## Use it in your AI agent (MCP)
+
+rtlint ships an **MCP server**, so Cursor / Claude / Windsurf can call it *while they write code* — the bug never ships:
+
+```json
+{
+  "mcpServers": {
+    "rtlint": { "command": "npx", "args": ["-y", "-p", "github:moradothmanepro-OTTO/rtlint", "rtlint-mcp"] }
+  }
+}
+```
+
+Tools: **`rtl_scan`** (scan a path) and **`rtl_check_code`** (send a snippet → get the fixed code back).
+
+## Use it in CI (GitHub Action)
+
+```yaml
+- uses: moradothmanepro-OTTO/rtlint@main
+  with:
+    path: .
+    # fix: true   # optionally apply fixes
+```
+
 ## Roadmap → rtlint Pro
 
 - **Hosted audit** — paste a repo or URL, get a full Arabic-RTL report + fixes (a designer-in-the-loop pass, not just the mechanical ones).
