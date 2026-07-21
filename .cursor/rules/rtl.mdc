@@ -1,0 +1,18 @@
+---
+description: Arabic / RTL correctness — apply when writing or editing any UI (JSX/TSX/CSS/Tailwind). Stops the RTL bugs AI code tools introduce.
+globs: ["**/*.{js,jsx,ts,tsx,css,scss,vue,svelte,html}"]
+alwaysApply: true
+---
+
+# Arabic / RTL rules (rtlint)
+
+When writing or editing UI, keep it correct for right-to-left (Arabic) from the start:
+
+1. **Never use physical CSS.** Use logical properties: `margin-inline-start/end`, `padding-inline-start/end`, `inset-inline-start/end`, `border-inline-start/end`, and `text-align: start/end` — never `left`/`right`.
+2. **Tailwind: use logical utilities.** `ms-` `me-` `ps-` `pe-` `start-` `end-` `text-start` `text-end` `rounded-s` `rounded-e` `border-s` `border-e` — never `ml-` `mr-` `pl-` `pr-` `left-` `right-` `text-left` `text-right` `rounded-l/r` `border-l/r`.
+3. **Direction is dynamic.** `<html dir={locale.dir}>` — never hard-code `dir="ltr"`.
+4. **Mirror directional icons** (chevrons, arrows, back/next) for RTL. Do NOT mirror non-directional icons (checkmark, user, search).
+5. **Arabic typography:** use an Arabic-capable font with a real fallback (e.g. `"Cairo","IBM Plex Sans Arabic", system-ui`), body Arabic ≥ 16px, line-height ≥ 1.5.
+6. **Locale-aware content:** Arabic-Indic numerals, locale date/currency, and wrap bidi-mixed strings in `<bdi>`.
+
+Verify with `npx rtlint . --fix` before committing.
