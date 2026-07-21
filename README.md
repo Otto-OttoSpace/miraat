@@ -12,6 +12,8 @@ npx rtlint . --fix      # apply the safe fixes (physical → logical)
 npx rtlint . --init-rules   # write RTL-RULES.md for your AI agent
 ```
 
+> Runs straight from the repo, no install: `npx github:moradothmanepro-OTTO/rtlint . --fix`
+
 ## What it catches
 
 | # | Pattern | rtlint |
