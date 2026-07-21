@@ -19,12 +19,24 @@
     "claude",
     "bidi"
   ],
+  "author": "Othmane Morad",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moradothmanepro-OTTO/rtlint.git"
+  },
+  "homepage": "https://github.com/moradothmanepro-OTTO/rtlint#readme",
+  "bugs": {
+    "url": "https://github.com/moradothmanepro-OTTO/rtlint/issues"
+  },
   "engines": {
     "node": ">=16"
   },
   "files": [
     "bin",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

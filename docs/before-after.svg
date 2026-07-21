@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="440" viewBox="0 0 880 440" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="880" height="440" rx="14" fill="#0d1117"/>
+  <rect x="0" y="0" width="880" height="46" rx="14" fill="#161b22"/>
+  <circle cx="26" cy="23" r="6" fill="#ff5f56"/>
+  <circle cx="48" cy="23" r="6" fill="#ffbd2e"/>
+  <circle cx="70" cy="23" r="6" fill="#27c93f"/>
+  <text x="440" y="28" fill="#8b949e" font-size="14" text-anchor="middle">rtlint — AI wrote this Arabic UI. It's broken.</text>
+
+  <text x="32" y="92" fill="#58a6ff" font-size="17">$ npx rtlint . --fix</text>
+
+  <text x="32" y="150" fill="#8b949e" font-size="14">BEFORE  (what the AI generated)</text>
+  <rect x="28" y="164" width="824" height="70" rx="8" fill="#1c1216" stroke="#f85149" stroke-opacity="0.4"/>
+  <text x="44" y="196" fill="#f85149" font-size="16">&lt;div dir="ltr" className="ml-4 pr-2 text-left border-l rounded-l-lg"&gt;</text>
+  <text x="44" y="222" fill="#f85149" font-size="16">&#160;&#160;margin-left: 16px;  text-align: left;  font-family: Inter;</text>
+
+  <text x="440" y="270" fill="#8b949e" font-size="18" text-anchor="middle">↓</text>
+
+  <text x="32" y="304" fill="#8b949e" font-size="14">AFTER  (logical, mirrors correctly in Arabic)</text>
+  <rect x="28" y="318" width="824" height="70" rx="8" fill="#0f1a12" stroke="#3fb950" stroke-opacity="0.5"/>
+  <text x="44" y="350" fill="#3fb950" font-size="16">&lt;div dir="ltr" className="ms-4 pe-2 text-start border-s rounded-s-lg"&gt;</text>
+  <text x="44" y="376" fill="#3fb950" font-size="16">&#160;&#160;margin-inline-start: 16px;  text-align: start;  &#160;/* + font flagged */</text>
+
+  <text x="848" y="424" fill="#8b949e" font-size="13" text-anchor="end">12 auto-fixed · 6 flagged for a human · free &amp; open source</text>
+</svg>
