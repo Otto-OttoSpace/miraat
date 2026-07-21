@@ -22,7 +22,7 @@ npx rtlint . --init-rules   # write RTL-RULES.md for your AI agent
 | 2 | Physical Tailwind (`ml-`, `pr-`, `left-`, `text-right`, `rounded-l`, `border-r`) | **auto-fix → logical** (`ms-`, `pe-`, `start-`, `text-end`, `rounded-s`, `border-e`) |
 | 3 | Hard-coded `dir="ltr"` | flag — make it dynamic |
 | 4 | Un-mirrored directional icons (`ChevronLeft`, `ArrowRight`, …) | flag — mirror for RTL |
-| 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`) | flag — use logical |
+| 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`) | **auto-fix → logical** |
 | 6 | Latin-only font stacks (no Arabic fallback) | flag — add an Arabic font |
 
 ## Before → after
