@@ -1,6 +1,6 @@
 {
   "name": "rtlint",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Find & fix the RTL/Arabic mistakes AI code tools keep making — logical CSS, mirrored Tailwind utilities, and an AI-rules file so your agent stops reintroducing them.",
   "bin": {
     "rtlint": "bin/rtlint.js"
