@@ -1,0 +1,30 @@
+{
+  "name": "rtlint",
+  "version": "0.1.0",
+  "description": "Find & fix the RTL/Arabic mistakes AI code tools keep making — logical CSS, mirrored Tailwind utilities, and an AI-rules file so your agent stops reintroducing them.",
+  "bin": {
+    "rtlint": "bin/rtlint.js"
+  },
+  "type": "commonjs",
+  "keywords": [
+    "rtl",
+    "arabic",
+    "i18n",
+    "l10n",
+    "tailwind",
+    "css-logical-properties",
+    "codemod",
+    "ai",
+    "cursor",
+    "claude",
+    "bidi"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ]
+}
