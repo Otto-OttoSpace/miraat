@@ -1,0 +1,100 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "border-r-2",
+    "to": "border-e-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "float-right",
+    "to": "float-end"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "left-0",
+    "to": "start-0"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "ml-4",
+    "to": "ms-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "mr-2",
+    "to": "me-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "pl-1",
+    "to": "ps-1"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "pr-3",
+    "to": "pe-3"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "rounded-l-lg",
+    "to": "rounded-s-lg"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "scroll-pl-4",
+    "to": "scroll-ps-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "text-left",
+    "to": "text-start"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 3,
+    "from": "-ml-2",
+    "to": "-ms-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 3,
+    "from": "!pl-2",
+    "to": "!ps-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 3,
+    "from": "hover:text-right",
+    "to": "hover:text-end"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 3,
+    "from": "md:pr-6",
+    "to": "md:pe-6"
+  }
+]

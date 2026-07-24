@@ -1,0 +1,23 @@
+[
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 3,
+    "from": "1234",
+    "to": ""
+  },
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 4,
+    "from": "56",
+    "to": ""
+  },
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 6,
+    "from": "2024",
+    "to": ""
+  }
+]

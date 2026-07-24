@@ -1,0 +1,30 @@
+[
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "ChevronLeft",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 2,
+    "from": "ArrowLeft",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 3,
+    "from": "ArrowRight",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 4,
+    "from": "ChevronsLeft",
+    "to": ""
+  }
+]

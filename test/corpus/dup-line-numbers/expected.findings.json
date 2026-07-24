@@ -1,0 +1,16 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "ml-4",
+    "to": "ms-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 6,
+    "from": "ml-4",
+    "to": "ms-4"
+  }
+]

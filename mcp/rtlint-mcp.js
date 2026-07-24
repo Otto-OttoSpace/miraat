@@ -11,7 +11,7 @@ const os = require('os');
 const path = require('path');
 
 const CLI = path.join(__dirname, '..', 'bin', 'rtlint.js');
-const VERSION = '0.3.0';
+const VERSION = require('../package.json').version;
 const PROTOCOL = '2025-06-18';
 
 function runCli(args) {

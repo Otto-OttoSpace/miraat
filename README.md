@@ -9,21 +9,28 @@ AI now writes most of the UI code in the world — and it is quietly, consistent
 ```bash
 npx rtlint .            # scan and report
 npx rtlint . --fix      # apply the safe fixes (physical → logical)
+npx rtlint . --check    # report only, exit non-zero if anything is found (CI)
+npx rtlint . --dry-run  # show what --fix would change, but write nothing
 npx rtlint . --init-rules   # write RTL-RULES.md for your AI agent
 ```
 
 > Runs straight from the repo, no install: `npx github:moradothmanepro-OTTO/rtlint . --fix`
+
+## Zero-corruption by design
+
+rtlint parses your code with a real **AST** (Babel for JS/TS/JSX/TSX, PostCSS for CSS) — it does **not** regex over raw text. Only high-confidence, mechanically-safe edits are auto-applied, and they're written as surgical splices into the original source, so formatting is preserved to the byte. Custom class names (`left-sidebar`, `pl-PL`), CSS selectors/comments/custom-properties, and JS identifiers/params/types that merely *look* physical are **never** touched. Everything ambiguous is reported, never rewritten. Re-running `--fix` is always a no-op.
 
 ## What it catches
 
 | # | Pattern | rtlint |
 |---|---------|--------|
 | 1 | Physical CSS (`margin-left`, `padding-right`, `border-left`, `text-align: left`) | **auto-fix → logical** (`margin-inline-start`, …) |
-| 2 | Physical Tailwind (`ml-`, `pr-`, `left-`, `text-right`, `rounded-l`, `border-r`) | **auto-fix → logical** (`ms-`, `pe-`, `start-`, `text-end`, `rounded-s`, `border-e`) |
-| 3 | Hard-coded `dir="ltr"` | flag — make it dynamic |
-| 4 | Un-mirrored directional icons (`ChevronLeft`, `ArrowRight`, …) | flag — mirror for RTL |
-| 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`) | **auto-fix → logical** |
+| 2 | Physical Tailwind (`ml-`, `pr-`, `left-`, `text-right`, `rounded-l`, `border-r`) — incl. inside `cn()`/`clsx()`/`cva()` | **auto-fix → logical** (`ms-`, `pe-`, `start-`, `text-end`, `rounded-s`, `border-e`) |
+| 3 | Hard-coded `dir="ltr"` / `dir={"ltr"}` / `direction: "ltr"` / `setAttribute('dir','ltr')` (and `"rtl"`) | flag — make it dynamic |
+| 4 | Un-mirrored directional icons (`ChevronLeft`, `BsChevronLeft`, `ArrowLeftIcon`, `MdKeyboardArrowRight`, …) | flag — mirror for RTL |
+| 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`, `el.style.marginLeft = …`) | **auto-fix → logical** |
 | 6 | Latin-only font stacks (no Arabic fallback) | flag — add an Arabic font |
+| 7 | Western numerals inside Arabic text (`السعر 1234 درهم`) | flag — use Arabic-Indic / locale-aware numerals |
 
 ## Before → after
 
