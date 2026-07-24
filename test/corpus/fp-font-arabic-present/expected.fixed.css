@@ -1,0 +1,12 @@
+.a {
+  font-family: Inter, Cairo;
+}
+.b {
+  font-family: "IBM Plex Sans Arabic", Inter;
+}
+.c {
+  font-family: "Noto Sans Arabic", system-ui;
+}
+.d {
+  font-family: system-ui, sans-serif;
+}

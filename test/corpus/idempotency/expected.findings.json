@@ -1,0 +1,72 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "border-r",
+    "to": "border-e"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "ml-4",
+    "to": "ms-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "pr-2",
+    "to": "pe-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "rounded-l-md",
+    "to": "rounded-s-md"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "text-left",
+    "to": "text-start"
+  },
+  {
+    "rule": "js-style-logical",
+    "sev": "fix",
+    "line": 6,
+    "from": "left",
+    "to": "start"
+  },
+  {
+    "rule": "js-style-logical",
+    "sev": "fix",
+    "line": 6,
+    "from": "marginLeft",
+    "to": "marginInlineStart"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 8,
+    "from": "mr-2",
+    "to": "me-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 8,
+    "from": "pl-1",
+    "to": "ps-1"
+  },
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 8,
+    "from": "2024",
+    "to": ""
+  }
+]

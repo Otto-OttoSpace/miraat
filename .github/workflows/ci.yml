@@ -2,13 +2,19 @@ name: ci
 on: [push, pull_request]
 
 jobs:
-  self-test:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      # smoke test: the CLI runs, detects the seeded bugs, and generates rules
-      - run: node bin/rtlint.js test/fixtures || true
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      # regression corpus: scan JSON + byte-exact --fix + idempotency + FP guards
+      - run: node --test test/run.js
+      # smoke: the CLI runs and can generate an AI-rules file
+      - run: node bin/rtlint.js test/fixtures --json
       - run: node bin/rtlint.js test/fixtures --init-rules

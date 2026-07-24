@@ -1,0 +1,9 @@
+.margin-left-auto {
+  color: red;
+}
+/* margin-left: 0; do not touch */
+.box {
+  --margin-left: 0;
+  content: "text-align:left";
+  margin-inline-start: 8px;
+}

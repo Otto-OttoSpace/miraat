@@ -1,0 +1,11 @@
+.card {
+  margin-inline-start: 16px;
+  padding-inline-end: 8px;
+  border-inline-start: 1px solid #eee;
+  border-inline-end-color: red;
+  text-align: start;
+  float: inline-start;
+  clear: inline-end;
+  font-family: Inter, sans-serif;
+  border-top-left-radius: 4px;
+}

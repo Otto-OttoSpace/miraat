@@ -1,0 +1,65 @@
+[
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "margin-left",
+    "to": "margin-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 3,
+    "from": "padding-right",
+    "to": "padding-inline-end"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "border-left",
+    "to": "border-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "border-right-color",
+    "to": "border-inline-end-color"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 6,
+    "from": "text-align: left",
+    "to": "text-align: start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 7,
+    "from": "float: left",
+    "to": "float: inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 8,
+    "from": "clear: right",
+    "to": "clear: inline-end"
+  },
+  {
+    "rule": "latin-font-stack",
+    "sev": "flag",
+    "line": 9,
+    "from": "Inter, sans-serif",
+    "to": ""
+  },
+  {
+    "rule": "physical-corner",
+    "sev": "flag",
+    "line": 10,
+    "from": "border-top-left-radius",
+    "to": ""
+  }
+]

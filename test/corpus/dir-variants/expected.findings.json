@@ -1,0 +1,44 @@
+[
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 1,
+    "from": "dir=\"ltr",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 2,
+    "from": "dir={\"ltr",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 3,
+    "from": "dir='rtl",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 4,
+    "from": "direction: \"ltr",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 6,
+    "from": "setAttribute(\"dir\", \"ltr\")",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 8,
+    "from": "dir={`ltr",
+    "to": ""
+  }
+]

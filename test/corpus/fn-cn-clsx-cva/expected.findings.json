@@ -1,0 +1,51 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 5,
+    "from": "ml-2",
+    "to": "ms-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 7,
+    "from": "pl-4",
+    "to": "ps-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 7,
+    "from": "pr-4",
+    "to": "pe-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 13,
+    "from": "mr-2",
+    "to": "me-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 13,
+    "from": "pl-1",
+    "to": "ps-1"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 13,
+    "from": "text-left",
+    "to": "text-start"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 14,
+    "from": "border-r",
+    "to": "border-e"
+  }
+]
