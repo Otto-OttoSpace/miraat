@@ -19,7 +19,7 @@
         "url": "https://rtl.ottospace.co"
       },
       "repositoryUrl": {
-        "url": "https://github.com/moradothmanepro-OTTO/rtlint"
+        "url": "https://github.com/Otto-OttoSpace/rtlint"
       },
       "licenses": ["spdx:MIT"],
       "tags": ["developer-tools", "linter", "rtl", "i18n", "internationalization", "arabic", "accessibility", "css", "react"]
@@ -30,7 +30,7 @@
       {
         "guid": "github-sponsors",
         "type": "payment-provider",
-        "address": "https://github.com/sponsors/moradothmanepro-OTTO",
+        "address": "https://github.com/sponsors/Otto-OttoSpace",
         "description": "GitHub Sponsors"
       }
     ],
