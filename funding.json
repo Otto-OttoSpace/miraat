@@ -1,0 +1,60 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "individual",
+    "role": "owner",
+    "name": "Othmane Morad",
+    "email": "morad.othmanepro@gmail.com",
+    "description": "Trilingual (Arabic/French/English) product designer and developer building open tools for correct Arabic and right-to-left interfaces in the AI-codegen era.",
+    "webpageUrl": {
+      "url": "https://ottospace.co"
+    }
+  },
+  "projects": [
+    {
+      "guid": "rtlint",
+      "name": "rtlint",
+      "description": "An open-source CLI that finds and auto-fixes the Arabic/RTL bugs AI coding tools systematically introduce: physical instead of logical CSS, wrongly mirrored icons, broken bidirectional text, and Western numerals in Arabic contexts. It scans any React/Next/Tailwind repo, auto-fixes the mechanical failures, and writes an AI-rules file so codegen tools stop reintroducing them. Serves the ~500 million Arabic speakers underserved by machine-generated interfaces.",
+      "webpageUrl": {
+        "url": "https://rtl.ottospace.co"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/moradothmanepro-OTTO/rtlint"
+      },
+      "licenses": ["spdx:MIT"],
+      "tags": ["developer-tools", "linter", "rtl", "i18n", "internationalization", "arabic", "accessibility", "css", "react"]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/moradothmanepro-OTTO",
+        "description": "GitHub Sponsors"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "accuracy-corpus",
+        "status": "active",
+        "name": "Accuracy corpus + hosted audit",
+        "description": "One-time funding for compute to run the hosted Arabic/RTL audit engine and to build an open dataset of real-world RTL failures that improves detection accuracy.",
+        "amount": 800,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["github-sponsors"]
+      },
+      {
+        "guid": "sustain",
+        "status": "active",
+        "name": "Sustain full-time RTL tooling",
+        "description": "Ongoing development of the rtlint CLI, hosted audit, and Arabic design-token layer as maintained open-source internationalization infrastructure.",
+        "amount": 3000,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": ["github-sponsors"]
+      }
+    ]
+  }
+}
