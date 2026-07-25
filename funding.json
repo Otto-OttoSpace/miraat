@@ -7,7 +7,8 @@
     "email": "morad.othmanepro@gmail.com",
     "description": "Trilingual (Arabic/French/English) product designer and developer building open tools for correct Arabic and right-to-left interfaces in the AI-codegen era.",
     "webpageUrl": {
-      "url": "https://ottospace.co"
+      "url": "https://ottospace.co",
+      "wellKnown": "https://ottospace.co/.well-known/funding-manifest-urls"
     }
   },
   "projects": [
@@ -16,7 +17,8 @@
       "name": "miraat",
       "description": "An open-source CLI (formerly rtlint) that finds and auto-fixes the right-to-left bugs AI coding tools systematically introduce across every RTL script — Arabic, Hebrew, Syriac, Thaana, N'Ko and Adlam: physical instead of logical CSS, wrongly mirrored icons, broken bidirectional text, and Western numerals in scripts that carry their own. It scans any React/Next/Tailwind repo, auto-fixes the mechanical failures, and writes an AI-rules file so codegen tools stop reintroducing them. Serves the hundreds of millions of readers of RTL scripts underserved by machine-generated interfaces.",
       "webpageUrl": {
-        "url": "https://rtl.ottospace.co"
+        "url": "https://rtl.ottospace.co",
+        "wellKnown": "https://rtl.ottospace.co/.well-known/funding-manifest-urls"
       },
       "repositoryUrl": {
         "url": "https://github.com/Otto-OttoSpace/miraat"
@@ -49,7 +51,7 @@
         "guid": "sustain",
         "status": "active",
         "name": "Sustain full-time RTL tooling",
-        "description": "Ongoing development of the rtlint CLI, hosted audit, and Arabic design-token layer as maintained open-source internationalization infrastructure.",
+        "description": "Ongoing development of the miraat CLI, hosted audit, and Arabic design-token layer as maintained open-source internationalization infrastructure.",
         "amount": 3000,
         "currency": "USD",
         "frequency": "monthly",
