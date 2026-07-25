@@ -24,7 +24,7 @@
         "url": "https://github.com/Otto-OttoSpace/miraat"
       },
       "licenses": ["spdx:MIT"],
-      "tags": ["developer-tools", "linter", "rtl", "i18n", "internationalization", "arabic", "hebrew", "syriac", "accessibility", "css", "react"]
+      "tags": ["developer-tools", "linter", "rtl", "i18n", "arabic", "hebrew", "syriac", "accessibility", "css", "react"]
     }
   ],
   "funding": {
