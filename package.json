@@ -1,10 +1,12 @@
 {
-  "name": "rtlint",
-  "version": "0.4.0",
-  "description": "Find & fix the RTL/Arabic mistakes AI code tools keep making — AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them.",
+  "name": "miraat",
+  "version": "0.5.0",
+  "description": "Find & fix the RTL mistakes AI code tools keep making — for Arabic, Hebrew, Syriac, Thaana, N’Ko & Adlam. AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them. (formerly rtlint)",
   "bin": {
-    "rtlint": "bin/rtlint.js",
-    "rtlint-mcp": "mcp/rtlint-mcp.js"
+    "miraat": "bin/miraat.js",
+    "miraat-mcp": "mcp/miraat-mcp.js",
+    "rtlint": "bin/miraat.js",
+    "rtlint-mcp": "mcp/miraat-mcp.js"
   },
   "type": "commonjs",
   "scripts": {
@@ -12,7 +14,11 @@
   },
   "keywords": [
     "rtl",
+    "rtlint",
+    "miraat",
     "arabic",
+    "hebrew",
+    "syriac",
     "i18n",
     "l10n",
     "tailwind",
@@ -27,11 +33,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moradothmanepro-OTTO/rtlint.git"
+    "url": "git+https://github.com/Otto-OttoSpace/miraat.git"
   },
-  "homepage": "https://github.com/moradothmanepro-OTTO/rtlint#readme",
+  "homepage": "https://github.com/Otto-OttoSpace/miraat#readme",
   "bugs": {
-    "url": "https://github.com/moradothmanepro-OTTO/rtlint/issues"
+    "url": "https://github.com/Otto-OttoSpace/miraat/issues"
   },
   "engines": {
     "node": ">=18"

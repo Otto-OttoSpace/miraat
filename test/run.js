@@ -17,7 +17,7 @@ const os = require('node:os');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
-const CLI = path.join(ROOT, 'bin', 'rtlint.js');
+const CLI = path.join(ROOT, 'bin', 'miraat.js');
 const CORPUS = path.join(__dirname, 'corpus');
 
 function runCli(args) {

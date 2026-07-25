@@ -12,17 +12,17 @@
   },
   "projects": [
     {
-      "guid": "rtlint",
-      "name": "rtlint",
-      "description": "An open-source CLI that finds and auto-fixes the Arabic/RTL bugs AI coding tools systematically introduce: physical instead of logical CSS, wrongly mirrored icons, broken bidirectional text, and Western numerals in Arabic contexts. It scans any React/Next/Tailwind repo, auto-fixes the mechanical failures, and writes an AI-rules file so codegen tools stop reintroducing them. Serves the ~500 million Arabic speakers underserved by machine-generated interfaces.",
+      "guid": "miraat",
+      "name": "miraat",
+      "description": "An open-source CLI (formerly rtlint) that finds and auto-fixes the right-to-left bugs AI coding tools systematically introduce across every RTL script — Arabic, Hebrew, Syriac, Thaana, N'Ko and Adlam: physical instead of logical CSS, wrongly mirrored icons, broken bidirectional text, and Western numerals in scripts that carry their own. It scans any React/Next/Tailwind repo, auto-fixes the mechanical failures, and writes an AI-rules file so codegen tools stop reintroducing them. Serves the hundreds of millions of readers of RTL scripts underserved by machine-generated interfaces.",
       "webpageUrl": {
         "url": "https://rtl.ottospace.co"
       },
       "repositoryUrl": {
-        "url": "https://github.com/Otto-OttoSpace/rtlint"
+        "url": "https://github.com/Otto-OttoSpace/miraat"
       },
       "licenses": ["spdx:MIT"],
-      "tags": ["developer-tools", "linter", "rtl", "i18n", "internationalization", "arabic", "accessibility", "css", "react"]
+      "tags": ["developer-tools", "linter", "rtl", "i18n", "internationalization", "arabic", "hebrew", "syriac", "accessibility", "css", "react"]
     }
   ],
   "funding": {

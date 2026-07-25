@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+- **Rebrand: rtlint → miraat** (مرآة, "mirror"). The package is now `miraat`; the CLI is `miraat` and the MCP server is `miraat-mcp`. Backwards-compatible aliases are kept everywhere: the `rtlint` / `rtlint-mcp` bins still work, the MCP tools answer to `miraat_scan` / `miraat_check_code` **and** the `rtlint_*` / legacy `rtl_*` names, and `rtlint` stays an npm keyword. Repo, docs and funding now point at `github.com/Otto-OttoSpace/miraat` (site stays `rtl.ottospace.co`).
+- **All RTL scripts, not just Arabic.** A Unicode scripts table (`lib/scripts.js`, shared with arabitype) now drives detection so physical→logical, `dir` handling and mirrored-icon flags apply to every right-to-left script — Arabic, Hebrew, Syriac, Thaana, N'Ko, Adlam.
+- **Numeral check is now script-correct.** Western-digits-in-RTL flags only fire for scripts that carry their own numerals (Arabic, Thaana, N'Ko, Adlam); Hebrew and Syriac use Western digits and are never falsely flagged. The AST-verified surgical-splice safety gate is unchanged — only mechanically-safe edits auto-apply.
+- New regression corpus cases for Hebrew and Syriac snippets (physical→logical + dir + icon fire; digits correctly left alone).
+
 ## 0.4.0
 - **AST-verified engine** — JS/TS/JSX/TSX now parsed with Babel, CSS with PostCSS. Fixes are surgical splices into the original source, so formatting is byte-preserved and re-running `--fix` is a guaranteed no-op. No more regex-over-raw-text corruption.
 - **Zero-corruption guarantees**: custom class names (`left-sidebar`, `pl-PL`), CSS selectors/comments/custom-properties, and JS identifiers/params/types are never rewritten. Tailwind mapping is value-validated.
