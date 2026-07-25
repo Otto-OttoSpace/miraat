@@ -1,17 +1,17 @@
 {
-  "name": "rtlint",
+  "name": "miraat",
   "owner": { "name": "Othmane Morad" },
   "metadata": {
-    "description": "Find & fix the RTL/Arabic bugs AI code tools introduce.",
-    "version": "0.4.0"
+    "description": "Find & fix the RTL bugs AI code tools introduce (Arabic, Hebrew, Syriac, Thaana, N’Ko, Adlam).",
+    "version": "0.5.0"
   },
   "plugins": [
     {
-      "name": "rtlint",
-      "description": "Scan & auto-fix RTL/Arabic bugs (physical CSS/Tailwind, un-mirrored icons, hard-coded dir) via the rtlint MCP server.",
+      "name": "miraat",
+      "description": "Scan & auto-fix RTL bugs across Arabic, Hebrew, Syriac, Thaana, N’Ko & Adlam (physical CSS/Tailwind, un-mirrored icons, hard-coded dir) via the miraat MCP server (formerly rtlint).",
       "source": "./",
       "mcpServers": {
-        "rtlint": { "command": "node", "args": ["./mcp/rtlint-mcp.js"] }
+        "miraat": { "command": "node", "args": ["./mcp/miraat-mcp.js"] }
       }
     }
   ]

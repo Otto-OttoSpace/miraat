@@ -1,0 +1,51 @@
+[
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "ChevronLeft",
+    "to": ""
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "border-l",
+    "to": "border-s"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "ml-4",
+    "to": "ms-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "pr-2",
+    "to": "pe-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "text-left",
+    "to": "text-start"
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 4,
+    "from": "dir=\"ltr",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 5,
+    "from": "ChevronLeft",
+    "to": ""
+  }
+]

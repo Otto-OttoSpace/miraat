@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 'use strict';
-// Score AI-tool outputs for RTL correctness using rtlint. Lower issues = better.
+// Score AI-tool outputs for RTL correctness using miraat. Lower issues = better.
 // Usage: node benchmark/score.js <dir-of-tool-output-folders>
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const CLI = path.join(__dirname, '..', 'bin', 'rtlint.js');
+const CLI = path.join(__dirname, '..', 'bin', 'miraat.js');
 const root = process.argv[2] || path.join(__dirname, 'outputs');
 
 function scan(dir) {

@@ -1,36 +1,49 @@
-# rtlint
+# Miraat (مرآة)
 
-**Find & fix the RTL/Arabic mistakes AI code tools keep making.**
+**Find & fix the RTL mistakes AI code tools keep making — for every right-to-left script.**
 
-AI now writes most of the UI code in the world — and it is quietly, consistently *bad* at Arabic and right-to-left. It reaches for `ml-4`, `text-left`, `padding-right`, hard-codes `dir="ltr"`, and never mirrors an icon. It looks fine in English and breaks the moment a real Arabic user opens it.
+> Formerly **rtlint**. *Miraat* (مرآة) is Arabic for "mirror" — mirroring left↔right is the whole job. The `rtlint` command and the `rtlint_*` MCP tools still work as aliases.
 
-`rtlint` scans your React / Next / Tailwind / CSS, **auto-fixes the mechanical RTL mistakes**, flags the ones that need a human eye, and writes an **AI-rules file** so your agent (Cursor, Claude, Copilot) stops reintroducing them.
+AI now writes most of the UI code in the world — and it is quietly, consistently *bad* at right-to-left. It reaches for `ml-4`, `text-left`, `padding-right`, hard-codes `dir="ltr"`, and never mirrors an icon. It looks fine in English and breaks the moment a real **Arabic, Hebrew, Syriac, Thaana, N'Ko or Adlam** user opens it.
+
+`miraat` scans your React / Next / Tailwind / CSS, **auto-fixes the mechanical RTL mistakes**, flags the ones that need a human eye, and writes an **AI-rules file** so your agent (Cursor, Claude, Copilot) stops reintroducing them. It's script-aware: physical→logical, `dir` and mirrored-icon guidance fire for **all** RTL scripts, while script-specific checks (like Western digits in a native-numeral script) fire only where they're actually wrong — Arabic/Thaana/N'Ko/Adlam carry their own numerals; Hebrew and Syriac use Western digits, so those are never falsely flagged.
 
 ```bash
-npx rtlint .            # scan and report
-npx rtlint . --fix      # apply the safe fixes (physical → logical)
-npx rtlint . --check    # report only, exit non-zero if anything is found (CI)
-npx rtlint . --dry-run  # show what --fix would change, but write nothing
-npx rtlint . --init-rules   # write RTL-RULES.md for your AI agent
+npx miraat .            # scan and report
+npx miraat . --fix      # apply the safe fixes (physical → logical)
+npx miraat . --check    # report only, exit non-zero if anything is found (CI)
+npx miraat . --dry-run  # show what --fix would change, but write nothing
+npx miraat . --init-rules   # write RTL-RULES.md for your AI agent
 ```
 
-> Runs straight from the repo, no install: `npx github:moradothmanepro-OTTO/rtlint . --fix`
+> Runs straight from the repo, no install: `npx github:Otto-OttoSpace/miraat . --fix`
 
 ## Zero-corruption by design
 
-rtlint parses your code with a real **AST** (Babel for JS/TS/JSX/TSX, PostCSS for CSS) — it does **not** regex over raw text. Only high-confidence, mechanically-safe edits are auto-applied, and they're written as surgical splices into the original source, so formatting is preserved to the byte. Custom class names (`left-sidebar`, `pl-PL`), CSS selectors/comments/custom-properties, and JS identifiers/params/types that merely *look* physical are **never** touched. Everything ambiguous is reported, never rewritten. Re-running `--fix` is always a no-op.
+miraat parses your code with a real **AST** (Babel for JS/TS/JSX/TSX, PostCSS for CSS) — it does **not** regex over raw text. Only high-confidence, mechanically-safe edits are auto-applied, and they're written as surgical splices into the original source, so formatting is preserved to the byte. Custom class names (`left-sidebar`, `pl-PL`), CSS selectors/comments/custom-properties, and JS identifiers/params/types that merely *look* physical are **never** touched. Everything ambiguous is reported, never rewritten. Re-running `--fix` is always a no-op.
+
+## Every RTL script, not just Arabic
+
+miraat carries a Unicode **scripts table** (`lib/scripts.js`) so it reasons about each right-to-left script correctly instead of hard-coding Arabic:
+
+| Script | dir | Own numerals? | Western digits flagged? |
+|--------|-----|---------------|--------------------------|
+| Arabic, N'Ko, Adlam, Thaana | rtl | yes | yes — use native / locale-aware numerals |
+| Hebrew, Syriac | rtl | no (use Western) | **no** — never falsely flagged |
+
+Physical→logical, `dir` handling and mirrored-icon flags apply to **all** of them; the numeral check keys off the table so it only fires where a script has its own digits.
 
 ## What it catches
 
-| # | Pattern | rtlint |
+| # | Pattern | miraat |
 |---|---------|--------|
 | 1 | Physical CSS (`margin-left`, `padding-right`, `border-left`, `text-align: left`) | **auto-fix → logical** (`margin-inline-start`, …) |
 | 2 | Physical Tailwind (`ml-`, `pr-`, `left-`, `text-right`, `rounded-l`, `border-r`) — incl. inside `cn()`/`clsx()`/`cva()` | **auto-fix → logical** (`ms-`, `pe-`, `start-`, `text-end`, `rounded-s`, `border-e`) |
 | 3 | Hard-coded `dir="ltr"` / `dir={"ltr"}` / `direction: "ltr"` / `setAttribute('dir','ltr')` (and `"rtl"`) | flag — make it dynamic |
 | 4 | Un-mirrored directional icons (`ChevronLeft`, `BsChevronLeft`, `ArrowLeftIcon`, `MdKeyboardArrowRight`, …) | flag — mirror for RTL |
 | 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`, `el.style.marginLeft = …`) | **auto-fix → logical** |
-| 6 | Latin-only font stacks (no Arabic fallback) | flag — add an Arabic font |
-| 7 | Western numerals inside Arabic text (`السعر 1234 درهم`) | flag — use Arabic-Indic / locale-aware numerals |
+| 6 | Script-blind font stacks (no RTL-capable fallback) | flag — add a script-capable font |
+| 7 | Western numerals inside a native-numeral RTL script (`السعر 1234 درهم`) | flag — use native / locale-aware numerals |
 
 ## Before → after
 
@@ -45,32 +58,32 @@ rtlint parses your code with a real **AST** (Babel for JS/TS/JSX/TSX, PostCSS fo
 
 ## Why the flags aren't auto-fixed
 
-The mechanical half of RTL — logical properties, mirrored utilities — is now commodity (shadcn and Tailwind ship it). **rtlint gives you that for free.** But the half that actually makes Arabic *feel right* — mirroring the correct icons, Arabic typographic scale and font pairing, bidi edge-cases, Arabic-Indic numerals, cultural correctness — takes native judgment. rtlint flags those; it doesn't guess. That judgment is a service, not a regex — see the roadmap.
+The mechanical half of RTL — logical properties, mirrored utilities — is now commodity (shadcn and Tailwind ship it). **miraat gives you that for free.** But the half that actually makes an RTL script *feel right* — mirroring the correct icons, typographic scale and font pairing per script, bidi edge-cases, native numerals, cultural correctness — takes native judgment. miraat flags those; it doesn't guess. That judgment is a service, not a regex — see the roadmap.
 
 ## Use it in your AI agent (MCP)
 
-rtlint ships an **MCP server**, so Cursor / Claude / Windsurf can call it *while they write code* — the bug never ships:
+miraat ships an **MCP server**, so Cursor / Claude / Windsurf can call it *while they write code* — the bug never ships:
 
 ```json
 {
   "mcpServers": {
-    "rtlint": { "command": "npx", "args": ["-y", "-p", "github:moradothmanepro-OTTO/rtlint", "rtlint-mcp"] }
+    "miraat": { "command": "npx", "args": ["-y", "-p", "github:Otto-OttoSpace/miraat", "miraat-mcp"] }
   }
 }
 ```
 
-Tools: **`rtl_scan`** (scan a path) and **`rtl_check_code`** (send a snippet → get the fixed code back).
+Tools: **`miraat_scan`** (scan a path) and **`miraat_check_code`** (send a snippet → get the fixed code back). The `rtlint_*` and legacy `rtl_*` tool names still resolve to the same handlers.
 
 ## Use it in CI (GitHub Action)
 
 ```yaml
-- uses: moradothmanepro-OTTO/rtlint@main
+- uses: Otto-OttoSpace/miraat@main
   with:
     path: .
     # fix: true   # optionally apply fixes
 ```
 
-## Roadmap → rtlint Pro
+## Roadmap → Miraat Pro
 
 - **Hosted audit** — paste a repo or URL, get a full Arabic-RTL report + fixes (a designer-in-the-loop pass, not just the mechanical ones).
 - **CI GitHub Action** — fail the PR when new physical RTL bugs land.

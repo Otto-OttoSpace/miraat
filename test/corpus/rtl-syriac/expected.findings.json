@@ -1,0 +1,51 @@
+[
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "ArrowRight",
+    "to": ""
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "mr-2",
+    "to": "me-2"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "pl-4",
+    "to": "ps-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "rounded-r-lg",
+    "to": "rounded-e-lg"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 4,
+    "from": "text-right",
+    "to": "text-end"
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 4,
+    "from": "dir=\"ltr",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 5,
+    "from": "ArrowRight",
+    "to": ""
+  }
+]

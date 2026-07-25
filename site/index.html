@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>rtlint — fix the RTL/Arabic bugs AI code tools make</title>
-<meta name="description" content="AI writes most UI now and is quietly bad at Arabic/RTL. rtlint scans your React/Next/Tailwind, auto-fixes the mistakes, and writes an AI-rules file so your agent stops.">
+<title>Miraat — fix the RTL bugs AI code tools make (Arabic, Hebrew, Syriac, N’Ko…)</title>
+<meta name="description" content="AI writes most UI now and is quietly bad at right-to-left. Miraat (formerly rtlint) scans your React/Next/Tailwind, auto-fixes the mistakes across every RTL script, and writes an AI-rules file so your agent stops.">
+<link rel="canonical" href="https://rtl.ottospace.co/">
 <style>
   :root{--bg:#0d1117;--panel:#161b22;--fg:#e6edf3;--mut:#8b949e;--red:#f85149;--grn:#3fb950;--blue:#58a6ff;--line:#21262d}
   *{box-sizing:border-box}
@@ -40,13 +41,13 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="logo">rtlint</div>
+    <div class="logo">miraat · <span class="ar">مرآة</span></div>
     <h1>AI writes most of your UI now — and it's quietly bad at <span class="ar">العربية</span> / RTL.</h1>
-    <p class="sub">It reaches for <code>ml-4</code>, <code>text-left</code>, hard-codes <code>dir="ltr"</code>, never mirrors an icon. Looks fine in English. Breaks the second an Arabic user opens it. <b>rtlint</b> finds it, fixes what's mechanical, and flags what needs a human.</p>
-    <div class="cmd mono"><span style="color:var(--mut)">$</span>&nbsp;npx <b>rtlint</b> . --fix</div>
+    <p class="sub">It reaches for <code>ml-4</code>, <code>text-left</code>, hard-codes <code>dir="ltr"</code>, never mirrors an icon. Looks fine in English. Breaks the second an Arabic, Hebrew, Syriac, Thaana, N’Ko or Adlam user opens it. <b>Miraat</b> (formerly rtlint) finds it, fixes what's mechanical, and flags what needs a human.</p>
+    <div class="cmd mono"><span style="color:var(--mut)">$</span>&nbsp;npx <b>miraat</b> . --fix</div>
     <div class="btns">
-      <a class="btn p" href="https://github.com/moradothmanepro-OTTO/rtlint">View on GitHub →</a>
-      <a class="btn s" href="https://github.com/moradothmanepro-OTTO/rtlint/blob/main/blog/why-every-ai-tool-builds-broken-arabic.md">Read the handbook</a>
+      <a class="btn p" href="https://github.com/Otto-OttoSpace/miraat">View on GitHub →</a>
+      <a class="btn s" href="https://github.com/Otto-OttoSpace/miraat/blob/main/blog/why-every-ai-tool-builds-broken-arabic.md">Read the handbook</a>
     </div>
   </header>
 
@@ -68,20 +69,20 @@
       <li><span class="tag">AUTO-FIX</span><br>Physical Tailwind → <code>ms/me/ps/pe/start/end</code></li>
       <li class="flag"><span class="tag">FLAG</span><br>Hard-coded <code>dir="ltr"</code></li>
       <li class="flag"><span class="tag">FLAG</span><br>Un-mirrored directional icons</li>
-      <li class="flag"><span class="tag">FLAG</span><br>Latin-only fonts (no Arabic fallback)</li>
+      <li class="flag"><span class="tag">FLAG</span><br>Script-blind fonts (no RTL-capable fallback)</li>
       <li class="flag"><span class="tag">FLAG</span><br>Locale-blind numerals / dates / bidi</li>
     </ul>
-    <p class="sub" style="margin-top:16px;text-align:left">The mechanical half is free now. The half that makes Arabic actually <em>feel</em> right — icons, type, bidi, culture — takes native judgment. rtlint flags those; it doesn't guess. That judgment is the <a href="https://github.com/moradothmanepro-OTTO/rtlint">Pro audit</a>.</p>
+    <p class="sub" style="margin-top:16px;text-align:left">Physical→logical, <code>dir</code> and mirrored-icon flags fire for every RTL script — Arabic, Hebrew, Syriac, Thaana, N’Ko, Adlam. The half that makes each one actually <em>feel</em> right — icons, type, bidi, culture — takes native judgment. Miraat flags those; it doesn't guess. That judgment is the <a href="https://github.com/Otto-OttoSpace/miraat">Pro audit</a>.</p>
   </section>
 
   <section>
     <h2>Get started</h2>
-    <div class="cmd mono" style="display:flex"><span style="color:var(--mut)">$</span>&nbsp;npx <b>rtlint</b> .&nbsp;&nbsp;<span style="color:var(--mut)"># scan · --fix to apply · --init-rules for your AI agent</span></div>
+    <div class="cmd mono" style="display:flex"><span style="color:var(--mut)">$</span>&nbsp;npx <b>miraat</b> .&nbsp;&nbsp;<span style="color:var(--mut)"># scan · --fix to apply · --init-rules for your AI agent</span></div>
   </section>
 
   <footer>
     Built by an <b>Arabic-RTL Design Engineer</b> — Western-quality product design + RTL-correct code · AR / FR / EN<br>
-    Free &amp; open source · MIT
+    Free &amp; open source · MIT · part of <a href="https://dev.ottospace.co">Otto</a>
   </footer>
 </div>
 </body>

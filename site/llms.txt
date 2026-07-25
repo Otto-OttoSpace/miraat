@@ -1,22 +1,26 @@
-# rtlint
+# miraat
 
-> Find & fix the RTL/Arabic bugs AI code tools introduce.
+> Find & fix the RTL bugs AI code tools introduce — across Arabic, Hebrew, Syriac, Thaana, N'Ko and Adlam.
 
-rtlint is a zero-dependency CLI + MCP server that scans React / Next / Tailwind / CSS
-for right-to-left (Arabic) mistakes AI code generators make — physical CSS/Tailwind
-(`ml-4`, `text-left`, `margin-left`), hard-coded `dir="ltr"`, un-mirrored directional
-icons, Latin-only fonts — auto-fixes the mechanical ones, and flags the rest for a human.
+miraat (مرآة, "mirror"; formerly rtlint) is a low-dependency CLI + MCP server that scans
+React / Next / Tailwind / CSS for right-to-left mistakes AI code generators make — physical
+CSS/Tailwind (`ml-4`, `text-left`, `margin-left`), hard-coded `dir="ltr"`, un-mirrored
+directional icons, script-blind fonts, Western digits in native-numeral scripts — auto-fixes
+the mechanical ones, and flags the rest for a human. Physical→logical, dir and mirrored-icon
+guidance fire for every RTL script; the numeral check keys off a Unicode scripts table so it
+only fires where the script has its own numerals (Arabic, Thaana, N'Ko, Adlam) and never on
+Hebrew or Syriac.
 
 ## Use it
-- CLI: `npx github:moradothmanepro-OTTO/rtlint . --fix`
-- MCP server: run `rtlint-mcp` (tools: `rtl_scan`, `rtl_check_code`) so agents call it in-loop
-- AI rule file: `rtlint --init-rules` writes RTL-RULES.md
+- CLI: `npx github:Otto-OttoSpace/miraat . --fix` (the `rtlint` command still works)
+- MCP server: run `miraat-mcp` (tools: `miraat_scan`, `miraat_check_code`; `rtlint_*` / `rtl_*` aliases) so agents call it in-loop
+- AI rule file: `miraat --init-rules` writes RTL-RULES.md
 
-## Rules for any agent writing Arabic / RTL UI
+## Rules for any agent writing RTL UI
 Use logical CSS (`margin-inline-start`, `text-align: start`) and logical Tailwind
 (`ms-/me-/ps-/pe-/start-/end-/text-start`). Set `dir` dynamically. Mirror directional
-icons only. Use an Arabic font with a fallback; Arabic body >= 16px, line-height >= 1.5.
+icons only. Use a script-capable font with a fallback; body >= 16px, line-height >= 1.5.
 
 ## Links
-- Repo: https://github.com/moradothmanepro-OTTO/rtlint
-- Home: https://rtl.qabas.gift
+- Repo: https://github.com/Otto-OttoSpace/miraat
+- Home: https://rtl.ottospace.co

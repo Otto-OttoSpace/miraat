@@ -1,5 +1,5 @@
-name: 'rtlint'
-description: 'Find & fix the RTL/Arabic bugs AI code tools introduce'
+name: 'miraat'
+description: 'Find & fix the RTL bugs AI code tools introduce (Arabic, Hebrew, Syriac, Thaana, N’Ko, Adlam)'
 author: 'Othmane Morad'
 branding:
   icon: 'globe'
@@ -18,4 +18,4 @@ runs:
       run: |
         FLAG=""
         if [ "${{ inputs.fix }}" = "true" ]; then FLAG="--fix"; fi
-        node "${{ github.action_path }}/bin/rtlint.js" "${{ inputs.path }}" $FLAG
+        node "${{ github.action_path }}/bin/miraat.js" "${{ inputs.path }}" $FLAG
