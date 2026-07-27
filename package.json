@@ -56,5 +56,9 @@
     "@babel/parser": "^8.0.4",
     "@babel/traverse": "^8.0.4",
     "postcss": "^8.5.23"
+  },
+  "funding": {
+    "type": "polar",
+    "url": "https://polar.sh/otto-space"
   }
 }
