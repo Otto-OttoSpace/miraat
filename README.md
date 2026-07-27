@@ -94,3 +94,9 @@ Tools: **`miraat_scan`** (scan a path) and **`miraat_check_code`** (send a snipp
 Built by an **Arabic-RTL Design Engineer** — Western-quality product design + RTL-correct code, in Arabic, French & English. The free handbook *"Arabic-RTL for the AI era"* is the companion to this tool.
 
 MIT © 2026
+
+## 💛 Support & commercial use
+
+The Miraat suite is free and open-source (MIT). If it helps you ship correct Arabic/RTL, please consider [sponsoring](https://polar.sh/otto-space) — it funds maintenance and new rules.
+
+Using it in a commercial product, in CI, or need the private **DGA compliance** rule pack? **[Miraat Pro](https://polar.sh/otto-space)** adds a commercial license, a hosted CI audit that gates PRs ([miraat-action](https://github.com/Otto-OttoSpace/miraat-action)), and priority support.
