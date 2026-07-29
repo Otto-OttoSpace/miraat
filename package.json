@@ -58,7 +58,7 @@
     "postcss": "^8.5.23"
   },
   "funding": {
-    "type": "polar",
-    "url": "https://polar.sh/otto-space"
+    "type": "github",
+    "url": "https://github.com/sponsors/Otto-OttoSpace"
   }
 }
