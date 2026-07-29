@@ -14,6 +14,6 @@ Apply: https://accelerator.github.com/
 Wait until rtlint has stars/users (post-Show HN). More competitive.
 
 ## Money rails to set up first (so any of the above can pay you cleanly)
-- **Polar** (https://polar.sh) — merchant-of-record; it collects and remits VAT/GST in 60+ countries FOR you. This solves your cross-border (Morocco/Canada) collection problem with zero tax admin. Use it to sell the Pro tier.
+- **Lemon Squeezy** (https://lemonsqueezy.com) — merchant-of-record for selling the Pro tier across borders (Morocco/Canada). (Polar was dropped.)
 - **GitHub Sponsors** — enable on your account; the FUNDING.yml is already in the repo.
 - **thanks.dev** (https://thanks.dev) — passively routes corporate "fund-your-dependencies" money to maintainers (5% fee).

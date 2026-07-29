@@ -1,0 +1,46 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miraat — AIが書くRTLのバグを捕まえる</title><meta name="description" content="AIが書く右書き（RTL）のバグを捕まえる。"><link rel="canonical" href="https://miraat.ottospace.co/ja/"><link rel="alternate" hreflang="en" href="https://miraat.ottospace.co/"><link rel="alternate" hreflang="ar" href="https://miraat.ottospace.co/ar/"><link rel="alternate" hreflang="fr" href="https://miraat.ottospace.co/fr/"><link rel="alternate" hreflang="es" href="https://miraat.ottospace.co/es/"><link rel="alternate" hreflang="pt" href="https://miraat.ottospace.co/pt/"><link rel="alternate" hreflang="de" href="https://miraat.ottospace.co/de/"><link rel="alternate" hreflang="it" href="https://miraat.ottospace.co/it/"><link rel="alternate" hreflang="tr" href="https://miraat.ottospace.co/tr/"><link rel="alternate" hreflang="ru" href="https://miraat.ottospace.co/ru/"><link rel="alternate" hreflang="fa" href="https://miraat.ottospace.co/fa/"><link rel="alternate" hreflang="ur" href="https://miraat.ottospace.co/ur/"><link rel="alternate" hreflang="hi" href="https://miraat.ottospace.co/hi/"><link rel="alternate" hreflang="zh" href="https://miraat.ottospace.co/zh/"><link rel="alternate" hreflang="ja" href="https://miraat.ottospace.co/ja/"><link rel="alternate" hreflang="x-default" href="https://miraat.ottospace.co/"><meta property="og:title" content="Miraat — AIが書くRTLのバグを捕まえる"><meta property="og:description" content="AIが書く右書き（RTL）のバグを捕まえる。"><meta property="og:type" content="website"><meta property="og:url" content="https://miraat.ottospace.co/ja/"><meta property="og:image" content="https://ottospace.co/assets/otto-mark.png"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow">
+<link rel="icon" href="https://ottospace.co/assets/otto-mark.png" type="image/png">
+<link rel="stylesheet" href="https://ottospace.co/assets/tokens.css"><link rel="stylesheet" href="https://ottospace.co/assets/site.css"><link rel="stylesheet" href="https://ottospace.co/assets/token-alias.css">
+<style>.rv{opacity:1 !important;transform:none !important}.hero-home{padding-top:96px}.langpanel{max-height:min(60vh,420px);overflow-y:auto}</style>
+</head><body>
+<div class="grain" aria-hidden="true"></div><div class="glow" id="glow" aria-hidden="true"></div>
+<nav class="top"><div class="bar">
+  <a class="brand" href="https://ottospace.co"><img src="https://ottospace.co/assets/otto-mark.png" alt="OttoSpace">OttoSpace</a>
+  <div class="navr"><div class="navlinks"><a href="https://ottospace.co/products/">プロダクト</a><a href="https://dev.ottospace.co">ツール</a><a href="https://community.ottospace.co">コミュニティ</a><a href="https://ottospace.co/#do">スタジオ</a></div>
+  <span class="clock" id="clock" data-label="Montréal">Montréal —:—</span><div class="langmenu" data-cur="ja"><button class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="言語を選択"><span class="globe" aria-hidden="true">◍</span><span class="lc">日本語</span><span class="cv" aria-hidden="true">▾</span></button><div class="langpanel" role="menu"><a href="/" hreflang="en" lang="en">English</a><a href="/ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/fa/" hreflang="fa" lang="fa" dir="rtl">فارسی</a><a href="/ur/" hreflang="ur" lang="ur" dir="rtl">اردو</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/zh/" hreflang="zh" lang="zh">中文</a><a href="#" hreflang="ja" lang="ja" aria-current="true">日本語</a></div></div>
+  <a class="cta magnetic" href="https://id.ottospace.co">サインイン</a>
+  </div></div></nav>
+<header class="hero-home"><div class="aurora" aria-hidden="true"></div><div class="wrap">
+  <div class="eyebrow rv">مرآة · Otto</div>
+  <h1 class="hh rv" data-d="1">AIが書く右書き（RTL）のバグを捕まえる。</h1>
+  <p class="hlede rv" data-d="2">Miraat は React / Next / Tailwind のリポジトリをスキャンし、AIコード生成が標準で埋め込むRTLのバグ — 物理CSS、反転すべきアイコン、崩れた bidi — を、あらゆる右書きスクリプトにわたって自動修正します。</p>
+  <div class="rv" data-d="3" style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <a class="btn solid" href="https://github.com/Otto-OttoSpace/miraat">GitHub <span class="ar">↗</span></a>
+    <code style="font-family:var(--mono);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px">npx github:Otto-OttoSpace/miraat</code>
+  </div>
+</div></header>
+<section class="divide"><div class="wrap">
+  <div class="kh rv"><span class="ix">01</span> 機能</div>
+  <div class="cards" data-anim="rise-group" style="margin-top:28px"><a class="card rv" data-d="1"><h4>AST検証つき自動修正</h4><p>確信度の高い修正だけを適用。曖昧なものはすべてフラグを立て、黙って変更することはありません。</p></a><a class="card rv" data-d="2"><h4>あらゆるRTLスクリプト</h4><p>アラビア語、ヘブライ語、シリア語、ターナ文字、ンコ文字、アドラム文字 — アラビア語だけではありません。</p></a><a class="card rv" data-d="3"><h4>エージェント・ネイティブ</h4><p>MCP サーバーと Claude Skill を同梱。AIツールがバグを再び持ち込むのを止めます。</p></a><a class="card rv" data-d="4"><h4>CI対応</h4><p>GitHub Action とバイト単位で正確な回帰コーパス。破損ゼロを保証します。</p></a></div>
+</div></section>
+<section class="divide"><div class="wrap">
+  <div class="kh rv"><span class="ix">02</span> Otto の一部 — 多言語ウェブのためのオープンツール</div>
+  <div class="rv" style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><a class="chip" href="https://kashida.ottospace.co/">Kashida <span>· Arabic type</span></a><a class="chip" href="https://lahja.ottospace.co/">Lahja <span>· i18n</span></a><a class="chip" href="https://daleel.ottospace.co/">Daleel <span>· DGA gate</span></a><a class="chip" href="https://mizan.ottospace.co/">Mizan <span>· RTL benchmark</span></a></div>
+</div></section>
+<footer><div class="wrap"><div class="foot-top">
+  <div class="foot-brand"><a class="brand" href="https://ottospace.co/"><img src="https://ottospace.co/assets/otto-mark.png" alt="" style="width:24px;height:24px">OttoSpace</a>
+    <p>独立系のデザイン＆エンジニアリング・スタジオ。プロダクト、ツール、ブランドを一つ屋根の下に、あらゆる言語で、世界中のチームへ。</p></div>
+  <div class="foot-cols">
+    <div class="fcol"><h5>アプリ</h5><a href="https://id.ottospace.co/">OttoID</a><a href="https://auth.ottospace.co/">OttoAuth</a><a href="https://ticket.ottospace.co/">OttoTicket</a><a href="https://book.ottospace.co/">OttoBook</a><a href="https://pay.ottospace.co/">OttoPay</a></div>
+    <div class="fcol"><h5>ツール</h5><a href="https://miraat.ottospace.co/">Miraat</a><a href="https://kashida.ottospace.co/">Kashida</a><a href="https://lahja.ottospace.co/">Lahja</a><a href="https://daleel.ottospace.co/">Daleel</a><a href="https://mizan.ottospace.co/">Mizan</a></div>
+    <div class="fcol"><h5>スタジオ</h5><a href="https://ottospace.co/work/">実績</a><a href="https://ottospace.co/#do">アプローチ</a><a href="https://dev.ottospace.co">ツール</a><a href="https://community.ottospace.co">コミュニティ</a></div>
+    <div class="fcol"><h5>会社</h5><a href="https://ottospace.co/privacy/">プライバシー</a><a href="https://ottospace.co/terms/">利用規約</a><a href="https://ottospace.co/accessibility/">アクセシビリティ</a></div>
+  </div></div></div>
+  <div class="foot-word" aria-hidden="true">OTTOSPACE</div>
+  <div class="wrap"><div class="foot-bottom"><span>© 2026 OttoSpace · MIT</span><span>すべて自社でデザイン＆エンジニアリング · 14 </span></div></div>
+</footer>
+<script src="https://ottospace.co/assets/site.js" defer></script>
+<script src="https://ottospace.co/assets/concierge.js" defer></script>
+</body></html>
