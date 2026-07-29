@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arabic / RTL Audit & Fixes — Othmane Morad · ottospace.co</title>
+<meta name="description" content="I audit and fix the Arabic/RTL bugs your product ships — broken joins, wrong mirroring, fake fonts. Fixed-price tiers, free mini-audit, DGA compliance.">
+<style>
+:root{
+  --bg:#0a0b0a;--bg2:#101210;--card:#141613;--card2:#1b1e19;
+  --ink:#f4f5f1;--mut:#9ca298;--soft:#c3c6ba;--faint:#5c6159;
+  --line:rgba(244,245,241,.10);--line2:rgba(244,245,241,.16);
+  --lime:#d8fe00;--lime-deep:#8fa300;--bone:#eae5d6;--red:#ff6b6b;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(22px,5vw,60px) clamp(16px,4vw,32px)}
+a{color:var(--lime);text-decoration:none}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none}
+h1{font-size:clamp(34px,7vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.02;margin:16px 0 14px}
+h1 .g{color:var(--lime)}
+.lede{color:var(--soft);font-size:clamp(16px,2.6vw,20px);max-width:62ch}
+.btn{display:inline-block;font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.5px;border:none;border-radius:100px;padding:13px 24px;cursor:pointer}
+.btn-primary{background:var(--lime);color:#0a0b0a}
+.btn-ghost{background:transparent;color:var(--soft);border:1px solid var(--line2)}
+.rowx{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
+.proof{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:13px;color:var(--mut)}
+.proof b{color:var(--lime);font-size:22px;font-weight:800}
+.proof span{display:flex;flex-direction:column;gap:2px}
+section{margin-top:clamp(44px,7vw,80px)}
+h2{font-size:clamp(22px,4vw,32px);font-weight:800;letter-spacing:-1px}
+.mut{color:var(--mut)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card .k{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--red)}
+.card h3{font-size:18px;font-weight:700;margin-top:8px}
+.card p{color:var(--soft);font-size:14px;margin-top:8px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:26px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column}
+.tier.feat{border-color:var(--lime);box-shadow:0 0 0 1px rgba(216,254,0,.25)}
+.tier .name{font-weight:700;font-size:17px}
+.tier .price{font-size:34px;font-weight:800;letter-spacing:-1px;margin:10px 0 2px;color:var(--lime)}
+.tier .turn{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.tier ul{list-style:none;margin:16px 0 20px;padding:0;display:flex;flex-direction:column;gap:9px}
+.tier li{font-size:14px;color:var(--soft);padding-left:22px;position:relative}
+.tier li:before{content:"✓";position:absolute;left:0;color:var(--lime)}
+.tier .btn{margin-top:auto;text-align:center}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#0a0b0a;background:var(--lime);border-radius:100px;padding:3px 10px;margin-bottom:8px;align-self:flex-start}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:22px;counter-reset:s}
+.step{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.step:before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);font-size:26px;font-weight:800;color:var(--lime)}
+.step h4{font-size:16px;font-weight:700;margin:6px 0 4px}
+.step p{font-size:13.5px;color:var(--mut)}
+.cta{margin-top:clamp(44px,7vw,80px);background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line2);border-radius:20px;padding:clamp(24px,4vw,40px);text-align:center}
+.cta h2{margin-bottom:8px}
+.cta p{color:var(--soft);max-width:56ch;margin:0 auto}
+.ar{font-family:"IBM Plex Sans Arabic","Segoe UI",sans-serif}
+footer{margin-top:40px;color:var(--faint);font-family:var(--mono);font-size:12px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.chip{font-family:var(--mono);font-size:13px;color:var(--soft);border:1px solid var(--line2);border-radius:100px;padding:8px 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow"><span class="dot"></span>Othmane Morad · Arabic / RTL Design Engineer · Montréal</div>
+  <h1>Ship Arabic that <span class="g">reads as Arabic.</span></h1>
+  <p class="lede">Most "Arabic support" ships broken — severed letter-joins, layouts mirrored the wrong way,
+  Latin fonts faking Arabic, wrong numerals. I audit your product and fix it end to end: typography → RTL CSS
+  → QA. Native Arabic, and I build the open-source tooling that catches these bugs automatically.</p>
+  <div class="rowx">
+    <a class="btn btn-primary" href="#book">Book an audit</a>
+    <a class="btn btn-ghost" href="instant-audit.html">Run the free instant check →</a>
+  </div>
+  <div class="proof">
+    <span><b>116→6</b> Arabic issues fixed on a live site</span>
+    <span><b>5</b> open-source RTL tools shipped</span>
+    <span><b>AR·FR·EN</b> native Arabic + code</span>
+    <span><b>KSA·UAE</b> Khaleeji + MSA</span>
+  </div>
+
+  <section>
+    <h2>What quietly breaks in Arabic</h2>
+    <div class="grid3">
+      <div class="card"><div class="k">Critical</div><h3>Shattered letter-joins</h3><p>letter-spacing / tracking cuts Arabic's cursive connections — the #1 cause of "broken-looking" Arabic.</p></div>
+      <div class="card"><div class="k">Critical</div><h3>Fonts faking Arabic</h3><p>No Arabic family in the stack → the browser draws Arabic in a Latin/mono fallback (tofu, disconnected letters).</p></div>
+      <div class="card"><div class="k">Major</div><h3>Wrong mirroring</h3><p>Physical CSS (margin-left, text-align:left, float) and hard-coded dir don't flip — layouts break in RTL.</p></div>
+      <div class="card"><div class="k">Major</div><h3>Numerals & bidi</h3><p>Western digits in Arabic strings, corrupted mixed number/text runs — reads as half-translated.</p></div>
+    </div>
+  </section>
+
+  <section id="book">
+    <h2>Pick a scope</h2>
+    <p class="mut">Fixed-price, fast turnarounds. Start free — I'll run a mini-audit on one page so you see the value before you commit.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="name">RTL / Arabic Snapshot</div>
+        <div class="price">$600</div>
+        <div class="turn">~3 days</div>
+        <ul><li>Audit up to 8 key screens/pages</li><li>Prioritized issue list (severity + screenshots)</li><li>The exact logical-CSS + shaping fixes</li><li>PDF report</li></ul>
+        <a class="btn btn-ghost" href="#contact">Start</a>
+      </div>
+      <div class="tier feat">
+        <span class="badge">Most chosen</span>
+        <div class="name">Full Audit + Fixes</div>
+        <div class="price">$2,400</div>
+        <div class="turn">~7 days</div>
+        <ul><li>Whole site / app, manual + automated</li><li>Categorized report + annotated screenshots</li><li>I implement the top fixes (CSS/RTL) or ship the PRs</li><li>Re-verify + an accessibility/RTL checklist</li></ul>
+        <a class="btn btn-primary" href="#contact">Book this</a>
+      </div>
+      <div class="tier">
+        <div class="name">DGA / Enterprise</div>
+        <div class="price">from $3,500</div>
+        <div class="turn">scoped</div>
+        <ul><li>Saudi DGA / gov-grade Arabic-RTL compliance</li><li>Conformance report + remediation plan</li><li>Optional CI gate (my linter in your pipeline)</li><li>For teams shipping into regulated Gulf markets</li></ul>
+        <a class="btn btn-ghost" href="#contact">Enquire</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><h4>Free mini-audit</h4><p>Send me a URL or a screen. I run my tooling + a native read and send back the top issues — no charge.</p></div>
+      <div class="step"><h4>Scope + deposit</h4><p>We agree a fixed scope and price. 40% deposit to start.</p></div>
+      <div class="step"><h4>Report + fixes</h4><p>You get the prioritized report and the fixes (or PRs), re-verified. Balance on delivery.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who this is for</h2>
+    <div class="who">
+      <span class="chip">Gulf gov / system integrators</span>
+      <span class="chip">Arabic e-commerce (Salla · Zid)</span>
+      <span class="chip">Product teams shipping Arabic</span>
+      <span class="chip">Branding studios needing RTL delivery</span>
+      <span class="chip">Type foundries (webfont / shaping QA)</span>
+    </div>
+  </section>
+
+  <div class="cta" id="contact">
+    <div class="ar" style="font-size:34px;color:var(--lime);margin-bottom:10px">عربي صحيح</div>
+    <h2>Let's make your Arabic feel native.</h2>
+    <p>Send me one screen or a URL for a free mini-audit — you'll see exactly what's breaking and what it takes to fix it.</p>
+    <div class="rowx" style="justify-content:center">
+      <a class="btn btn-primary" href="mailto:hello@ottospace.co?subject=Arabic%2FRTL%20audit">Email for a free mini-audit</a>
+      <a class="btn btn-ghost" href="instant-audit.html">Try the instant check</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>Othmane Morad — Arabic / RTL Design Engineer · Montréal, works worldwide</span>
+    <span style="margin-left:auto">ottospace.co · github.com/Otto-OttoSpace</span>
+  </footer>
+</div>
+</body>
+</html>

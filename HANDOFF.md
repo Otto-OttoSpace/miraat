@@ -6,7 +6,7 @@ Everything below the line is built and in the repo. Above the line are the thing
 1. **Make the repo public** — GitHub → rtlint → Settings → Danger Zone → Make public. *(Unblocks `npx github:...`, the landing links, and everything else.)*
 2. **Launch it** — hand `LAUNCH-CHROME-PROMPT.md` to your Chrome agent: dev.to post, Show HN (be present to reply), cursor.directory listing, bio reposition.
 3. **Grants = real money for what you built** — submit `grants/emergent-ventures.md` (edit to your voice) + the two in `grants/other-funding.md` (GitHub Secure OSS Fund $10k, Vercel OSS $3.6k).
-4. **Money rails** — enable **GitHub Sponsors** (FUNDING.yml is ready), sign up **Polar** (polar.sh, merchant-of-record) and **thanks.dev**.
+4. **Money rails** — enable **GitHub Sponsors** (FUNDING.yml is ready); **Lemon Squeezy** checkout pending for the Pro tier (Polar was dropped); **thanks.dev**.
 5. **Publish the MCP server** to the registry so agents can find it — registry.modelcontextprotocol.io (via `make publisher`, uses your GitHub). Also list on cursor.directory.
 6. **npm (optional)** — set up a 2FA authenticator on npmjs.com, tell me, and I publish `npx rtlint`. Until then the GitHub install works.
 7. **Reposition your bios** everywhere → **"Design Engineer — RTL & Arabic a11y · AR/FR/EN."**

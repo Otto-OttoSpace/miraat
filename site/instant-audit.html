@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instant RTL Audit — Miraat · ottospace.co</title>
+<meta name="description" content="Paste your HTML/CSS/JSX/Tailwind and instantly find the Arabic/RTL bugs AI code tools keep making — physical CSS, broken joins, hard-coded direction, missing Arabic fonts.">
+<style>
+:root{
+  --bg:#0a0b0a;--bg2:#101210;--card:#141613;--card2:#1b1e19;
+  --ink:#f4f5f1;--mut:#9ca298;--soft:#c3c6ba;--faint:#5c6159;
+  --line:rgba(244,245,241,.10);--line2:rgba(244,245,241,.16);
+  --lime:#d8fe00;--lime-deep:#8fa300;--bone:#eae5d6;
+  --red:#ff6b6b;--amber:#ffc14d;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:clamp(20px,5vw,56px) clamp(16px,4vw,32px)}
+a{color:var(--lime)}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;letter-spacing:-1.5px;line-height:1.04;margin:16px 0 10px}
+h1 .g{color:var(--lime)}
+.lede{color:var(--soft);font-size:clamp(15px,2.5vw,18px);max-width:60ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3vw,22px);margin-top:22px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+textarea{width:100%;min-height:230px;background:var(--bg2);color:var(--ink);border:1px solid var(--line2);border-radius:12px;padding:16px;font-family:var(--mono);font-size:13.5px;line-height:1.6;resize:vertical;tab-size:2}
+textarea:focus{outline:2px solid var(--lime);outline-offset:1px}
+.btn{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.5px;border:none;border-radius:100px;padding:12px 22px;cursor:pointer;transition:transform .06s ease}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--lime);color:#0a0b0a}
+.btn-ghost{background:transparent;color:var(--soft);border:1px solid var(--line2)}
+.hint{font-family:var(--mono);font-size:12px;color:var(--faint)}
+/* summary */
+.summary{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.score{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1}
+.score.ok{color:var(--lime)} .score.bad{color:var(--red)} .score.warn{color:var(--amber)}
+.sevpills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:12px;padding:5px 12px;border-radius:100px;border:1px solid var(--line2);color:var(--soft)}
+.pill b{color:var(--ink)}
+/* findings */
+.finding{border:1px solid var(--line);border-left:3px solid var(--faint);border-radius:10px;padding:14px 16px;margin-top:12px;background:var(--card2)}
+.finding.critical{border-left-color:var(--red)}
+.finding.major{border-left-color:var(--amber)}
+.finding.minor{border-left-color:var(--lime-deep)}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ftitle{font-weight:700;font-size:15px}
+.fsev{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.critical .fsev{color:var(--red)} .major .fsev{color:var(--amber)} .minor .fsev{color:var(--lime-deep)}
+.fwhy{color:var(--mut);font-size:13.5px;margin-top:4px}
+.fcode{font-family:var(--mono);font-size:12.5px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-top:9px;overflow-x:auto;white-space:pre}
+.fcode .del{color:var(--red)} .fcode .add{color:var(--lime)}
+.floc{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.empty{text-align:center;padding:26px;color:var(--mut)}
+.empty .big{font-size:40px;margin-bottom:8px}
+/* cta */
+.cta{margin-top:28px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line2);border-radius:16px;padding:clamp(18px,3vw,26px)}
+.cta h3{font-size:20px;font-weight:800;letter-spacing:-.5px}
+.cta p{color:var(--soft);font-size:14.5px;margin-top:6px;max-width:64ch}
+.cta .row{margin-top:14px}
+footer{margin-top:34px;color:var(--faint);font-family:var(--mono);font-size:12px;display:flex;gap:14px;flex-wrap:wrap}
+.ar{font-family:"IBM Plex Sans Arabic","Segoe UI",sans-serif}
+@media(max-width:560px){textarea{min-height:180px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow"><span class="dot"></span>Miraat · Instant RTL Audit · ottospace.co</div>
+  <h1>Does your Arabic <span class="g">read as Arabic?</span></h1>
+  <p class="lede">Paste your HTML, CSS, JSX or Tailwind below. This finds the right-to-left &amp; Arabic bugs
+  that AI code tools keep shipping — physical CSS that won't flip, broken letter-joins, hard-coded direction,
+  missing Arabic fonts. A quick heuristic pass; the <a href="https://github.com/Otto-OttoSpace/miraat" target="_blank" rel="noopener">Miraat CLI</a> does the AST-verified deep scan.</p>
+
+  <div class="panel">
+    <div class="row" style="justify-content:space-between;margin-bottom:12px">
+      <div class="hint">Nothing leaves your browser — the audit runs 100% locally.</div>
+      <div class="row">
+        <button class="btn btn-ghost" id="sample">Try a broken sample</button>
+        <button class="btn btn-ghost" id="clear">Clear</button>
+      </div>
+    </div>
+    <textarea id="src" placeholder='e.g.  <div class="ml-4 text-left" dir="ltr">&#10;  <span style="letter-spacing:2px; font-family: Menlo, monospace">تجربة عربية</span>&#10;</div>&#10;&#10;.card { margin-left: 16px; text-align: left; }'></textarea>
+    <div class="row" style="margin-top:14px">
+      <button class="btn btn-primary" id="run">Run the audit →</button>
+      <span class="hint" id="meta"></span>
+    </div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="cta">
+    <h3>Want the full fix — not just the list?</h3>
+    <p>This is the free instant check. For a live site or app I run the AST-verified Miraat suite across your
+    whole codebase, hand you a prioritized report, and ship the logical-CSS + shaping fixes (or the PRs) — the
+    same process that took one site from 100+ Arabic issues down to a handful.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="https://ottospace.co" target="_blank" rel="noopener">Book an audit</a>
+      <a class="btn btn-ghost" href="https://github.com/Otto-OttoSpace/miraat" target="_blank" rel="noopener">Get the free CLI</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>Miraat — RTL correctness for Arabic, Hebrew, Syriac, Thaana, N’Ko &amp; Adlam</span>
+    <span style="margin-left:auto">by Othmane Morad · ottospace.co</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  // Arabic / cursive-RTL Unicode ranges (Arabic, Arabic Supplement/Extended, Presentation Forms, Syriac, Thaana, N'Ko, Adlam, Hebrew)
+  var RTL_RE = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿܀-ݏހ-޿߀-߿֐-׿]|[\uD83A][\uDD00-\uDD5F]/;
+  var ARABIC_NUM_SCRIPT = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿ހ-޿߀-߿]/; // scripts with their own digits
+  var ARABIC_FONT_HINTS = /(cairo|tajawal|almarai|amiri|noto\s*(kufi|naskh|sans)?\s*arabic|ibm\s*plex\s*sans\s*arabic|reem\s*kufi|rubik|markazi|lateef|scheherazade|dubai|aref|kufam|el\s*messiri|changa|harmattan|vazir|estedad)/i;
+
+  var TW_MAP = [
+    [/(^|[\s"'`(])(-?)(?:!)?(?:[\w-]+:)*ml-((?:\d+(?:\.\d+)?|px|auto|\[[^\]]*\]))/, 'ml-→ms-'],
+    [/mr-((?:\d+(?:\.\d+)?|px|auto|\[[^\]]*\]))/, 'mr-→me-'],
+    [/pl-((?:\d+(?:\.\d+)?|px|auto|\[[^\]]*\]))/, 'pl-→ps-'],
+    [/pr-((?:\d+(?:\.\d+)?|px|auto|\[[^\]]*\]))/, 'pr-→pe-'],
+    [/\bleft-(\d|\[|full|auto|1\/2)/, 'left-→start-'],
+    [/\bright-(\d|\[|full|auto|1\/2)/, 'right-→end-'],
+    [/\btext-left\b/, 'text-left→text-start'],
+    [/\btext-right\b/, 'text-right→text-end'],
+    [/\bfloat-left\b/, 'float-left→float-start'],
+    [/\bfloat-right\b/, 'float-right→float-end'],
+    [/\bclear-left\b/, 'clear-left→clear-start'],
+    [/\bclear-right\b/, 'clear-right→clear-end'],
+    [/\brounded-l(-(?:sm|md|lg|xl|2xl|3xl|full))?\b/, 'rounded-l→rounded-s'],
+    [/\brounded-r(-(?:sm|md|lg|xl|2xl|3xl|full))?\b/, 'rounded-r→rounded-e'],
+    [/\bborder-l(-\d)?\b/, 'border-l→border-s'],
+    [/\bborder-r(-\d)?\b/, 'border-r→border-e'],
+    [/\brounded-(tl|tr|bl|br)\b/, 'physical corner → logical (rounded-ss/se/ee/es)']
+  ];
+  var CSS_PROP = [
+    [/margin-left\s*:/, 'margin-left → margin-inline-start'],
+    [/margin-right\s*:/, 'margin-right → margin-inline-end'],
+    [/padding-left\s*:/, 'padding-left → padding-inline-start'],
+    [/padding-right\s*:/, 'padding-right → padding-inline-end'],
+    [/border-left(-(?:width|color|style))?\s*:/, 'border-left → border-inline-start'],
+    [/border-right(-(?:width|color|style))?\s*:/, 'border-right → border-inline-end'],
+    [/(?:^|[;{\s])left\s*:/, 'left: → inset-inline-start:'],
+    [/(?:^|[;{\s])right\s*:/, 'right: → inset-inline-end:']
+  ];
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  function audit(src){
+    var lines = src.split(/\r?\n/);
+    var F = [];
+    var hasArabic = RTL_RE.test(src);
+    var add = function(sev,rule,why,line,code,fix){ F.push({sev:sev,rule:rule,why:why,line:line,code:code,fix:fix}); };
+
+    for (var i=0;i<lines.length;i++){
+      var L = lines[i], ln = i+1;
+      // letter-spacing on a line that has Arabic (or anywhere if Arabic present) = broken joins
+      if (/letter-spacing\s*:/.test(L) || /tracking-\w+/.test(L)){
+        if (hasArabic || RTL_RE.test(L)){
+          add('critical','letter-spacing shatters Arabic joins',
+            'letter-spacing / tracking cuts the cursive connections between Arabic letters — the #1 cause of "broken-looking" Arabic. Never apply tracking to Arabic runs.',
+            ln, L.trim(), 'remove letter-spacing on Arabic/RTL text (scope it to [lang]:not([lang^="ar"]) or Latin-only)');
+        }
+      }
+      // font-family with no Arabic family, when Arabic text exists
+      var fm = L.match(/font-family\s*:\s*([^;}{]+)/i);
+      if (fm && hasArabic && !ARABIC_FONT_HINTS.test(fm[1]) && !/var\(|inherit|initial/i.test(fm[1])){
+        add('critical','No Arabic font in the stack',
+          'The page renders Arabic but this font stack has no Arabic family — the browser falls back to a Latin/mono font that can\'t shape Arabic (tofu / disconnected letters).',
+          ln, L.trim(), 'add an Arabic family, e.g.  font-family: "IBM Plex Sans Arabic","Cairo",…');
+      }
+      // hard-coded dir
+      var dm = L.match(/dir\s*=\s*["']?(ltr|rtl)["']?/i);
+      if (dm && !/dir\s*=\s*[{`]/.test(L)){
+        add('major','Hard-coded direction',
+          'dir="'+dm[1]+'" is fixed — it won\'t flip for Arabic/Hebrew. Make it dynamic so every RTL locale mirrors.',
+          ln, L.trim(), 'dir={locale.dir}  (or set dir on <html> from the active language)');
+      }
+      // inline style physical props
+      if (/style\s*=/.test(L) && /(margin|padding|border)-(left|right)\s*:/.test(L)){
+        add('major','Inline physical style',
+          'Inline margin/padding/border -left/-right won\'t flip in RTL.',
+          ln, L.trim(), 'use the logical property (…-inline-start / …-inline-end)');
+      }
+      // Tailwind physical utilities
+      for (var t=0;t<TW_MAP.length;t++){
+        if (TW_MAP[t][0].test(L)){
+          add('major','Physical Tailwind utility',
+            'This physical utility stays put in RTL. Use the logical variant so it mirrors automatically.',
+            ln, L.trim(), TW_MAP[t][1]);
+          break; // one per line to avoid noise
+        }
+      }
+      // CSS physical props/values
+      for (var c=0;c<CSS_PROP.length;c++){
+        if (CSS_PROP[c][0].test(L)){
+          add('major','Physical CSS property',
+            'Physical (left/right) CSS doesn\'t follow text direction. Use the logical equivalent.',
+            ln, L.trim(), CSS_PROP[c][1]);
+          break;
+        }
+      }
+      if (/text-align\s*:\s*(left|right)\b/.test(L)){
+        var ta = L.match(/text-align\s*:\s*(left|right)/)[1];
+        add('major','Physical text-align',
+          'text-align:'+ta+' pins text to a side; in RTL you almost always want it to follow direction.',
+          ln, L.trim(), 'text-align: '+(ta==='left'?'start':'end'));
+      }
+      if (/float\s*:\s*(left|right)\b/.test(L)){
+        add('major','Physical float',
+          'float:left/right won\'t flip in RTL.', ln, L.trim(), 'float: inline-start / inline-end');
+      }
+      // Western digits inside Arabic-script text
+      var arNum = L.match(ARABIC_NUM_SCRIPT);
+      if (arNum && /[0-9]/.test(L) && RTL_RE.test(L)){
+        // crude: same line has Arabic-script letters and ASCII digits
+        add('minor','Western digits in Arabic text',
+          'This RTL script has its own numerals — mixing ASCII 0-9 reads as half-translated. Use locale-aware / Arabic-Indic digits where appropriate.',
+          ln, L.trim(), 'render numerals with the locale (Intl.NumberFormat("ar")) or Arabic-Indic ٠١٢…');
+      }
+    }
+    // missing dir/lang on <html>
+    if (/<html[\s>]/i.test(src)){
+      var htmlTag = (src.match(/<html[^>]*>/i)||[''])[0];
+      if (!/dir\s*=/.test(htmlTag) || !/lang\s*=/.test(htmlTag)){
+        add('major','Missing dir/lang on <html>',
+          'Without dir + lang on the root, the browser can\'t apply RTL or pick correct fonts/hyphenation.',
+          1, htmlTag.trim() || '<html>', 'set <html lang="ar" dir="rtl"> (or bind both to the active locale)');
+      }
+    }
+    return F;
+  }
+
+  function render(F, srcLen){
+    var out = document.getElementById('out');
+    var meta = document.getElementById('meta');
+    if (srcLen === 0){ out.innerHTML=''; meta.textContent=''; return; }
+    var crit=F.filter(function(f){return f.sev==='critical'}).length;
+    var maj=F.filter(function(f){return f.sev==='major'}).length;
+    var min=F.filter(function(f){return f.sev==='minor'}).length;
+    var total=F.length;
+    var scoreClass = total===0?'ok':(crit>0?'bad':'warn');
+    var html='';
+    html+='<div class="panel"><div class="summary">';
+    html+='<div class="score '+scoreClass+'">'+total+'</div>';
+    html+='<div><div style="font-weight:700;font-size:16px">'+(total===0?'No RTL issues found in this snippet 🎉':'RTL/Arabic issues found')+'</div>';
+    html+='<div class="sevpills" style="margin-top:8px">';
+    html+='<span class="pill">🔴 <b>'+crit+'</b> critical</span>';
+    html+='<span class="pill">🟠 <b>'+maj+'</b> major</span>';
+    html+='<span class="pill">🟡 <b>'+min+'</b> minor</span>';
+    html+='</div></div></div>';
+    if (total===0){
+      html+='<div class="empty"><div class="big ar">سليم</div>Looks clean here. For a real site the CLI catches deeper AST-level issues this quick pass can\'t.</div>';
+    }
+    html+='</div>';
+    // order: critical, major, minor
+    var order={critical:0,major:1,minor:2};
+    F.sort(function(a,b){return order[a.sev]-order[b.sev] || a.line-b.line});
+    for (var i=0;i<F.length;i++){
+      var f=F[i];
+      html+='<div class="finding '+f.sev+'">';
+      html+='<div class="fhead"><span class="ftitle">'+esc(f.rule)+'</span><span class="fsev">'+f.sev+'</span></div>';
+      html+='<div class="fwhy">'+esc(f.why)+'</div>';
+      html+='<div class="fcode"><span class="del">'+esc(f.code)+'</span></div>';
+      html+='<div class="fcode"><span class="add">✓ fix: '+esc(f.fix)+'</span></div>';
+      html+='<div class="floc">line '+f.line+'</div>';
+      html+='</div>';
+    }
+    out.innerHTML=html;
+    meta.textContent = total+' issue'+(total===1?'':'s')+' · '+crit+' critical';
+  }
+
+  var SAMPLE = '<html lang="en">\n<body>\n  <div class="card ml-4 pr-2 text-left rounded-l-lg" dir="ltr">\n    <h2 style="letter-spacing:1px; font-family: Menlo, monospace;">مرحبا بك في تطبيقنا 2024</h2>\n    <p>Balance: 1500</p>\n  </div>\n</body>\n</html>\n\n.card { margin-left: 16px; text-align: left; float: right; border-left: 2px solid #ccc; }';
+
+  document.getElementById('run').addEventListener('click',function(){
+    var src=document.getElementById('src').value;
+    render(audit(src), src.length);
+    document.getElementById('out').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  document.getElementById('sample').addEventListener('click',function(){
+    document.getElementById('src').value=SAMPLE;
+    render(audit(SAMPLE), SAMPLE.length);
+  });
+  document.getElementById('clear').addEventListener('click',function(){
+    document.getElementById('src').value=''; render([],0);
+  });
+})();
+</script>
+</body>
+</html>
