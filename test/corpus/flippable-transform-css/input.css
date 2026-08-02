@@ -1,0 +1,14 @@
+.drawer {
+  transform: translateX(-100%);
+  background-position: right center;
+}
+.mirror {
+  transform: scaleX(-1);
+}
+.safe {
+  transform: translateY(12px) rotate(10deg);
+  background-position: center top;
+}
+.noop {
+  transform: translateX(0);
+}

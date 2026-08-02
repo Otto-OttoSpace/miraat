@@ -1,0 +1,23 @@
+[
+  {
+    "rule": "flippable-transform",
+    "sev": "flag",
+    "line": 3,
+    "from": "translateX(24px)",
+    "to": ""
+  },
+  {
+    "rule": "flippable-transform",
+    "sev": "flag",
+    "line": 6,
+    "from": "left top",
+    "to": ""
+  },
+  {
+    "rule": "flippable-transform",
+    "sev": "flag",
+    "line": 6,
+    "from": "scaleX(-1)",
+    "to": ""
+  }
+]
