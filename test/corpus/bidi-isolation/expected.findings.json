@@ -1,0 +1,16 @@
+[
+  {
+    "rule": "bidi-isolation",
+    "sev": "flag",
+    "line": 4,
+    "from": "Otto",
+    "to": ""
+  },
+  {
+    "rule": "bidi-isolation",
+    "sev": "flag",
+    "line": 5,
+    "from": "version",
+    "to": ""
+  }
+]
