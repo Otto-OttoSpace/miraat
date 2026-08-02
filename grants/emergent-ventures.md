@@ -7,7 +7,7 @@ Apply at: https://www.mercatus.org/emergent-ventures  ·  (edit this into your o
 
 I'm building the correctness layer for Arabic and right-to-left (RTL) interfaces in the AI-coding era. AI tools now write most of the world's UI code, and they are systematically bad at Arabic: they reach for physical CSS (`margin-left`, `text-align: left`), hard-code `dir="ltr"`, and never mirror directional icons. The result looks perfect in English and is broken the moment a right-to-left user opens it. As AI writes more interfaces, the number of quietly-broken Arabic screens goes up, not down.
 
-I've shipped the first piece: **rtlint** (github.com/moradothmanepro-OTTO/rtlint, rtl.qabas.gift) — a free, open-source, zero-dependency tool that scans a codebase, auto-fixes the mechanical RTL mistakes, and flags the ones that need native judgment. It's also an MCP server, so AI agents (Cursor, Claude) can call it automatically as they write code. No RTL-specific tool of this kind exists.
+I've shipped the first piece: **rtlint** (github.com/Otto-OttoSpace/rtlint, rtl.qabas.gift) — a free, open-source, zero-dependency tool that scans a codebase, auto-fixes the mechanical RTL mistakes, and flags the ones that need native judgment. It's also an MCP server, so AI agents (Cursor, Claude) can call it automatically as they write code. No RTL-specific tool of this kind exists.
 
 **What I'd do with the grant:**
 
@@ -21,4 +21,4 @@ I'm one of very few people who sit at the exact intersection this requires: nati
 
 Hundreds of millions of people read right-to-left. As software generation gets automated, "correct for the majority language (English)" is becoming the silent default, and everyone else inherits subtly broken products. A cheap, open, agent-native way to catch and fix that — plus a public standard for what "correct" means — makes the AI-built web usable for a fifth of the planet. It also turns an under-served problem into a durable, ownable niche for someone who'd otherwise be one more junior designer competing with AI.
 
-**Links:** github.com/moradothmanepro-OTTO/rtlint · rtl.qabas.gift
+**Links:** github.com/Otto-OttoSpace/rtlint · rtl.qabas.gift

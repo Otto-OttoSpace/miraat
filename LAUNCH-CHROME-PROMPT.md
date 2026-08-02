@@ -1,6 +1,6 @@
 # Paste this to your Chrome agent to launch rtlint
 
-You're helping me launch my open-source dev tool **rtlint**. Repo: https://github.com/moradothmanepro-OTTO/rtlint
+You're helping me launch my open-source dev tool **rtlint**. Repo: https://github.com/Otto-OttoSpace/rtlint
 Pause for my confirmation before anything is finally submitted/posted. Do them in this order:
 
 ## 1. Make the GitHub repo public
