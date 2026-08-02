@@ -10,7 +10,7 @@
   },
   "type": "commonjs",
   "scripts": {
-    "test": "node --test test/run.js"
+    "test": "node --test test/run.js test/init-rules.test.js"
   },
   "keywords": [
     "rtl",
