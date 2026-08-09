@@ -50,7 +50,12 @@ function callTool(name, args) {
     return runCli(a);
   }
   if (name.endsWith('_check_code')) {
-    const ext = args.ext && args.ext.startsWith('.') ? args.ext : '.tsx';
+    // `ext` is attacker-controlled and gets joined into a temp path, so accept
+    // only a leading dot followed by alphanumerics (no '/', '\\', '..' or other
+    // separators). Anything else — including `.x/../../etc/passwd` — falls back
+    // to the safe default, preventing an arbitrary-write/-delete path traversal
+    // (this tool also runs --fix on the temp file, so the write is destructive).
+    const ext = typeof args.ext === 'string' && /^\.[A-Za-z0-9]+$/.test(args.ext) ? args.ext : '.tsx';
     const tmp = path.join(os.tmpdir(), `miraat-${Date.now()}-${Math.floor(Math.random() * 1e6)}${ext}`);
     fs.writeFileSync(tmp, args.code);
     let report = {};
