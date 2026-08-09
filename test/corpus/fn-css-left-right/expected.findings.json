@@ -1,0 +1,30 @@
+[
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "left",
+    "to": "inset-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "right",
+    "to": "inset-inline-end"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "scroll-margin-left",
+    "to": "scroll-margin-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 2,
+    "from": "scroll-padding-right",
+    "to": "scroll-padding-inline-end"
+  }
+]

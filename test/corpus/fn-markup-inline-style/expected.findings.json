@@ -1,0 +1,23 @@
+[
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "float: left",
+    "to": "float: inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "margin-left",
+    "to": "margin-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "text-align: right",
+    "to": "text-align: end"
+  }
+]
