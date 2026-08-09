@@ -1,7 +1,7 @@
 {
   "name": "miraat",
   "version": "0.8.0",
-  "description": "Find & fix the RTL mistakes AI code tools keep making — for Arabic, Hebrew, Syriac, Thaana, N’Ko & Adlam. AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them. (formerly rtlint)",
+  "description": "Find & fix the RTL mistakes AI code tools keep making \u2014 for Arabic, Hebrew, Syriac, Thaana, N\u2019Ko & Adlam. AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them. (formerly rtlint)",
   "bin": {
     "miraat": "bin/miraat.js",
     "miraat-mcp": "mcp/miraat-mcp.js",
@@ -10,7 +10,7 @@
   },
   "type": "commonjs",
   "scripts": {
-    "test": "node --test test/run.js test/init-rules.test.js"
+    "test": "node --test test/run.js test/init-rules.test.js test/mcp-security.test.js"
   },
   "keywords": [
     "rtl",
