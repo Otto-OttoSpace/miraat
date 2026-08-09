@@ -6,7 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20, 22]
+        # Node 18 reached end-of-life (Apr 2025) and ships an older ICU whose
+        # Unicode data makes the RTL digit/script detection differ from current
+        # runtimes. Test the maintained lines only; engines requires >=20.
+        node-version: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,9 +18,12 @@ jobs:
       - run: npm ci
       # regression corpus: scan JSON + byte-exact --fix + idempotency + FP guards
       - run: node --test test/run.js
-      # smoke: the CLI runs and emits valid JSON. Findings on the fixtures are
-      # expected, so miraat exits non-zero ("issues found") by design — validate
+      # smoke: the CLI runs and emits valid JSON. The fixtures contain deliberate
+      # RTL bugs, so miraat exits non-zero ("issues found") by design — validate
       # the JSON output instead of gating on that exit code.
-      - run: node bin/miraat.js test/fixtures --json | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>{JSON.parse(s);console.log('smoke ok: valid JSON')})"
+      - name: smoke - CLI emits valid JSON
+        run: |
+          node bin/miraat.js test/fixtures --json > smoke-out.json || true
+          node -e "JSON.parse(require('fs').readFileSync('smoke-out.json','utf8')); console.log('smoke ok')"
       # smoke: the CLI can generate an AI-rules file (exits 0)
       - run: node bin/miraat.js test/fixtures --init-rules
