@@ -1,0 +1,2 @@
+.drawer { position: absolute; inset-inline-start: 0; inset-inline-end: 10px; }
+.s { scroll-margin-inline-start: 8px; scroll-padding-inline-end: 4px; }
