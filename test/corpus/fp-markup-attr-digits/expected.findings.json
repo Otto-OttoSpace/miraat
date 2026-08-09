@@ -1,0 +1,23 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "ml-4",
+    "to": "ms-4"
+  },
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "pr-2",
+    "to": "pe-2"
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 1,
+    "from": "dir=\"rtl",
+    "to": ""
+  }
+]
