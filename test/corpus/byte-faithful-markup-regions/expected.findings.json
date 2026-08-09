@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "ml-4",
+    "to": "ms-4"
+  }
+]
