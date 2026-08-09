@@ -1,0 +1,6 @@
+/* Prototype-chain key names must never be treated as physical properties. */
+.a { constructor: red; }
+.b { toString: 1px; }
+.c { text-align: constructor; }
+.d { float: valueOf; }
+.e { hasOwnProperty: 2; }
