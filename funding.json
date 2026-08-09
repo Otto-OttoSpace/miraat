@@ -1,61 +1,164 @@
 {
-  "version": "v1.0.0",
+  "version": "v1.1.0",
   "entity": {
     "type": "individual",
     "role": "owner",
-    "name": "Othmane Morad",
-    "email": "morad.othmanepro@gmail.com",
-    "description": "Trilingual (Arabic/French/English) product designer and developer building open tools for correct Arabic and right-to-left interfaces in the AI-codegen era.",
+    "name": "Morad Othmane",
+    "email": "work@ottospace.co",
+    "description": "Designer and developer building open-source Arabic / right-to-left (RTL) internationalization tooling under OttoSpace. Author of Miraat, Lahja, Kashida, Daleel and Mizan — a suite that helps teams ship correct, high-quality bilingual and RTL interfaces.",
     "webpageUrl": {
-      "url": "https://ottospace.co",
-      "wellKnown": "https://ottospace.co/.well-known/funding-manifest-urls"
+      "url": "https://ottospace.co"
     }
   },
   "projects": [
     {
       "guid": "miraat",
-      "name": "miraat",
-      "description": "An open-source CLI (formerly rtlint) that finds and auto-fixes the right-to-left bugs AI coding tools systematically introduce across every RTL script — Arabic, Hebrew, Syriac, Thaana, N'Ko and Adlam: physical instead of logical CSS, wrongly mirrored icons, broken bidirectional text, and Western numerals in scripts that carry their own. It scans any React/Next/Tailwind repo, auto-fixes the mechanical failures, and writes an AI-rules file so codegen tools stop reintroducing them. Serves the hundreds of millions of readers of RTL scripts underserved by machine-generated interfaces.",
+      "name": "Miraat",
+      "description": "An RTL (right-to-left) linter for the web. Miraat statically analyzes markup and CSS to catch bidirectional-text and RTL layout bugs before they ship, so Arabic, Hebrew and Persian interfaces render correctly.",
       "webpageUrl": {
-        "url": "https://rtl.ottospace.co",
-        "wellKnown": "https://rtl.ottospace.co/.well-known/funding-manifest-urls"
+        "url": "https://github.com/Otto-OttoSpace/miraat"
       },
       "repositoryUrl": {
         "url": "https://github.com/Otto-OttoSpace/miraat"
       },
-      "licenses": ["spdx:MIT"],
-      "tags": ["developer-tools", "linter", "rtl", "i18n", "arabic", "hebrew", "syriac", "accessibility", "css", "react"]
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "rtl",
+        "i18n",
+        "internationalization",
+        "arabic",
+        "linter",
+        "developer-tools",
+        "accessibility"
+      ]
+    },
+    {
+      "guid": "lahja",
+      "name": "Lahja",
+      "description": "An i18n linter that flags missing, malformed, and inconsistent translation strings across locale files, keeping bilingual and multilingual apps correct as they grow.",
+      "webpageUrl": {
+        "url": "https://github.com/Otto-OttoSpace/lahja"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Otto-OttoSpace/lahja"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "i18n",
+        "internationalization",
+        "linter",
+        "localization",
+        "developer-tools",
+        "rtl"
+      ]
+    },
+    {
+      "guid": "kashida",
+      "name": "Kashida",
+      "description": "An Arabic text-shaping and justification tool built on HarfBuzz, handling kashida elongation and correct RTL letterform joining for typographically faithful Arabic layout.",
+      "webpageUrl": {
+        "url": "https://github.com/Otto-OttoSpace/kashida"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Otto-OttoSpace/kashida"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "arabic",
+        "rtl",
+        "typography",
+        "harfbuzz",
+        "text-shaping",
+        "fonts",
+        "i18n"
+      ]
+    },
+    {
+      "guid": "daleel",
+      "name": "Daleel",
+      "description": "A compliance checker for Saudi Digital Government Authority (DGA) design and accessibility guidelines, helping teams meet KSA public-sector digital standards.",
+      "webpageUrl": {
+        "url": "https://github.com/Otto-OttoSpace/daleel"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Otto-OttoSpace/daleel"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "rtl",
+        "arabic",
+        "accessibility",
+        "compliance",
+        "saudi",
+        "government",
+        "developer-tools"
+      ]
+    },
+    {
+      "guid": "mizan",
+      "name": "Mizan",
+      "description": "A benchmark suite that measures how well AI models and tools handle Arabic and right-to-left content, scoring correctness of generated RTL layouts and text.",
+      "webpageUrl": {
+        "url": "https://github.com/Otto-OttoSpace/mizan"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Otto-OttoSpace/mizan"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "rtl",
+        "arabic",
+        "ai",
+        "benchmark",
+        "evaluation",
+        "i18n",
+        "developer-tools"
+      ]
     }
   ],
   "funding": {
     "channels": [
       {
         "guid": "github-sponsors",
-        "type": "payment-provider",
+        "type": "other",
         "address": "https://github.com/sponsors/Otto-OttoSpace",
         "description": "GitHub Sponsors"
       }
     ],
     "plans": [
       {
-        "guid": "accuracy-corpus",
+        "guid": "support",
         "status": "active",
-        "name": "Accuracy corpus + hosted audit",
-        "description": "One-time funding for compute to run the hosted Arabic/RTL audit engine and to build an open dataset of real-world RTL failures that improves detection accuracy.",
-        "amount": 800,
-        "currency": "USD",
-        "frequency": "one-time",
-        "channels": ["github-sponsors"]
-      },
-      {
-        "guid": "sustain",
-        "status": "active",
-        "name": "Sustain full-time RTL tooling",
-        "description": "Ongoing development of the miraat CLI, hosted audit, and Arabic design-token layer as maintained open-source internationalization infrastructure.",
-        "amount": 3000,
+        "name": "Support ongoing development",
+        "description": "Fund continued development, maintenance and documentation of the OttoSpace RTL tooling suite.",
+        "amount": 0,
         "currency": "USD",
         "frequency": "monthly",
-        "channels": ["github-sponsors"]
+        "channels": [
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "grant",
+        "status": "active",
+        "name": "One-time grant",
+        "description": "One-time grant funding to accelerate roadmap items: CI actions, editor integrations and expanded RTL rule coverage.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "github-sponsors"
+        ]
       }
     ]
   }
