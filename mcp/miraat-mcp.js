@@ -42,10 +42,21 @@ const TOOLS = [
   { name: 'rtl_check_code',     description: CHECK_DESC + ' (legacy alias of miraat_check_code)', inputSchema: CHECK_SCHEMA },
 ];
 
+// A caller-supplied scan `path` must not be readable as a flag (`--init-rules`,
+// `--fix`, …) that would hijack the CLI into writing/rewriting files instead of
+// scanning. Reject leading-dash and prefix a bare relative path with `./`.
+function safeScanPath(p) {
+  if (typeof p !== 'string' || !p || p.startsWith('-')) return null;
+  if (!path.isAbsolute(p) && !p.startsWith('./') && !p.startsWith('../')) return './' + p;
+  return p;
+}
+
 function callTool(name, args) {
   // Route by suffix so miraat_*, rtlint_* and legacy rtl_* all map to one impl.
   if (name.endsWith('_scan')) {
-    const a = [args.path, '--json'];
+    const p = safeScanPath(args.path);
+    if (!p) throw new Error('invalid path (must be a file/dir, not a flag or subcommand)');
+    const a = [p, '--json'];
     if (args.fix) a.push('--fix');
     return runCli(a);
   }
