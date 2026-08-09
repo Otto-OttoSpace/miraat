@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 1,
+    "from": "dir=\"rtl",
+    "to": ""
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "margin-left",
+    "to": "margin-inline-start"
+  }
+]
