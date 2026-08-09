@@ -6,7 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20, 22]
+        # Node 18 reached end-of-life (Apr 2025) and ships an older ICU whose
+        # Unicode data makes the RTL digit/script detection differ from current
+        # runtimes. Test the maintained lines only; engines requires >=20.
+        node-version: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
