@@ -15,9 +15,12 @@ jobs:
       - run: npm ci
       # regression corpus: scan JSON + byte-exact --fix + idempotency + FP guards
       - run: node --test test/run.js
-      # smoke: the CLI runs and emits valid JSON. Findings on the fixtures are
-      # expected, so miraat exits non-zero ("issues found") by design — validate
+      # smoke: the CLI runs and emits valid JSON. The fixtures contain deliberate
+      # RTL bugs, so miraat exits non-zero ("issues found") by design — validate
       # the JSON output instead of gating on that exit code.
-      - run: node bin/miraat.js test/fixtures --json | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>{JSON.parse(s);console.log('smoke ok: valid JSON')})"
+      - name: smoke - CLI emits valid JSON
+        run: |
+          node bin/miraat.js test/fixtures --json > smoke-out.json || true
+          node -e "JSON.parse(require('fs').readFileSync('smoke-out.json','utf8')); console.log('smoke ok')"
       # smoke: the CLI can generate an AI-rules file (exits 0)
       - run: node bin/miraat.js test/fixtures --init-rules
