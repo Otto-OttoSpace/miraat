@@ -1,0 +1,3 @@
+.flip { transform: scale(-1); }
+.o { transform-origin: left top; }
+.p { background-position-x: right; }
