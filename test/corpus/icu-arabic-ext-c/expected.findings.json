@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 1,
+    "from": "5",
+    "to": ""
+  }
+]
