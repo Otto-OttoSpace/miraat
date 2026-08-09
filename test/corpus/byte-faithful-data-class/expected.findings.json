@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "tw-logical",
+    "sev": "fix",
+    "line": 1,
+    "from": "pr-2",
+    "to": "pe-2"
+  }
+]
