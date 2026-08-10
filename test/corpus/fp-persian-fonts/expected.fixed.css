@@ -1,0 +1,3 @@
+/* A correct Persian (Arabic-script) stack must NOT be flagged latin-font-stack. */
+html[lang="fa"] { font-family: "Vazirmatn", "IRANSans", "B Nazanin", "Tahoma", sans-serif; }
+.ur { font-family: "Noto Nastaliq Urdu", serif; }
