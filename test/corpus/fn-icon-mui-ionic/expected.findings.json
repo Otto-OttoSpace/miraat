@@ -1,0 +1,58 @@
+[
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "ArrowBack",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "ArrowForward",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "NavigateBefore",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 1,
+    "from": "NavigateNext",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 4,
+    "from": "ArrowBack",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 5,
+    "from": "NavigateBefore",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 6,
+    "from": "NavigateNext",
+    "to": ""
+  },
+  {
+    "rule": "icon-directional",
+    "sev": "flag",
+    "line": 7,
+    "from": "ArrowForward",
+    "to": ""
+  }
+]

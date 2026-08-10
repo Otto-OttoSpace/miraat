@@ -17,7 +17,7 @@
     "rule": "icon-directional",
     "sev": "flag",
     "line": 3,
-    "from": "ArrowRight",
+    "from": "KeyboardArrowRight",
     "to": ""
   },
   {
