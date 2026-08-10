@@ -1,0 +1,30 @@
+[
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 2,
+    "from": "dir=\"rtl",
+    "to": ""
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 6,
+    "from": "padding-left",
+    "to": "padding-inline-start"
+  },
+  {
+    "rule": "css-logical",
+    "sev": "fix",
+    "line": 7,
+    "from": "float: left",
+    "to": "float: inline-start"
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 10,
+    "from": "dir=\"ltr",
+    "to": ""
+  }
+]
