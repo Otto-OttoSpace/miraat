@@ -74,7 +74,12 @@ function callTool(name, args) {
     runCli([tmp, '--fix']);
     const fixed = fs.readFileSync(tmp, 'utf8');
     try { fs.unlinkSync(tmp); } catch {}
-    return JSON.stringify({ report, fixed }, null, 2);
+    // Scrub the internal temp path from the report before returning — the caller
+    // passed CODE, not a file, so a `file` field pointing at os.tmpdir() is noise
+    // and, on Windows, leaks the username (C:\Users\<name>\AppData\Local\Temp).
+    // Replace both the raw path and its JSON-escaped form (backslashes doubled).
+    const scrub = s => s.split(tmp).join('<snippet>').split(JSON.stringify(tmp).slice(1, -1)).join('<snippet>');
+    return scrub(JSON.stringify({ report, fixed }, null, 2));
   }
   throw new Error('unknown tool: ' + name);
 }
