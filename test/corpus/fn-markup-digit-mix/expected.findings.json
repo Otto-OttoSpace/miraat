@@ -1,0 +1,23 @@
+[
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 1,
+    "from": "dir=\"rtl",
+    "to": ""
+  },
+  {
+    "rule": "arabic-western-digits",
+    "sev": "flag",
+    "line": 2,
+    "from": "2024",
+    "to": ""
+  },
+  {
+    "rule": "hardcoded-dir",
+    "sev": "flag",
+    "line": 4,
+    "from": "dir=\"ltr",
+    "to": ""
+  }
+]
