@@ -1,6 +1,6 @@
 {
   "name": "miraat",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Find & fix the RTL mistakes AI code tools keep making — for Arabic, Hebrew, Syriac, Thaana, N’Ko & Adlam. AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them. (formerly rtlint)",
   "bin": {
     "miraat": "bin/miraat.js",
@@ -63,8 +63,8 @@
     "postcss": "^8.5.23"
   },
   "optionalDependencies": {
-    "kashida": "^0.6.1",
-    "lahja": "^0.5.1",
+    "kashida": "^0.7.0",
+    "lahja": "^0.6.0",
     "daleel": "^0.7.0"
   },
   "funding": {
