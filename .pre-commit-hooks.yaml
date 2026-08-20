@@ -1,0 +1,13 @@
+# pre-commit.com hook. In a consumer repo's .pre-commit-config.yaml:
+#   - repo: https://github.com/Otto-OttoSpace/miraat
+#     rev: v0.8.0
+#     hooks:
+#       - id: miraat
+- id: miraat
+  name: miraat (RTL/Arabic correctness)
+  description: Catch RTL/logical-CSS/bidi bugs before they commit.
+  entry: miraat
+  args: ["--check"]
+  language: node
+  types_or: [javascript, jsx, ts, tsx, css, scss, html, vue, svelte]
+  pass_filenames: false

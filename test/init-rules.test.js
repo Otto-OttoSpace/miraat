@@ -13,7 +13,7 @@ const os = require('node:os');
 const path = require('node:path');
 
 const CLI = path.join(__dirname, '..', 'bin', 'miraat.js');
-const AGENT_FILES = ['CLAUDE.md', 'AGENTS.md', '.windsurfrules', '.github/copilot-instructions.md', 'RTL-RULES.md', '.cursor/rules/rtl.mdc'];
+const AGENT_FILES = ['CLAUDE.md', 'AGENTS.md', 'GEMINI.md', '.windsurfrules', '.clinerules', '.github/copilot-instructions.md', 'RTL-RULES.md', '.cursor/rules/rtl.mdc'];
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'miraat-rules-'));
 const run = dir => execFileSync(process.execPath, [CLI, dir, '--init-rules'], { encoding: 'utf8' });

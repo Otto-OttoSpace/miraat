@@ -13,10 +13,24 @@ npx miraat .            # scan and report
 npx miraat . --fix      # apply the safe fixes (physical → logical)
 npx miraat . --check    # report only, exit non-zero if anything is found (CI)
 npx miraat . --dry-run  # show what --fix would change, but write nothing
-npx miraat . --init-rules   # write RTL-RULES.md for your AI agent
+npx miraat . --init-rules   # inject RTL rules into your AI agents (Claude/Cursor/Gemini/Windsurf/Cline/Copilot/Codex)
 ```
 
 > Runs straight from the repo, no install: `npx github:Otto-OttoSpace/miraat . --fix`
+
+## One command, the whole suite
+
+`miraat` is the umbrella for the RTL toolchain — one install, one command, every rule-pack:
+
+```bash
+npx miraat .            # RTL correctness            (default)
+npx miraat type .       # Arabic typography & shaping (kashida)
+npx miraat i18n .       # hardcoded strings / catalog (lahja)
+npx miraat a11y .       # DGA Platforms-Code + WCAG   (daleel)
+npx miraat all  .       # run every pack, one after another
+```
+
+Packs are **optional dependencies** — add the ones you use (`npm i -D kashida lahja daleel`) or run any standalone. `miraat` lazy-loads each pack and prints a one-line install hint if it's missing; the bare RTL scan never pulls them, so the base install stays lean. Each pack keeps its own audited engine (no monolith), and `npx miraat . --score` gives the single RTL Score.
 
 ## Zero-corruption by design
 
@@ -44,6 +58,8 @@ Physical→logical, `dir` handling and mirrored-icon flags apply to **all** of t
 | 5 | Inline JS physical styles (`marginLeft`, `textAlign: 'left'`, `el.style.marginLeft = …`) | **auto-fix → logical** |
 | 6 | Script-blind font stacks (no RTL-capable fallback) | flag — add a script-capable font |
 | 7 | Western numerals inside a native-numeral RTL script (`السعر 1234 درهم`) | flag — use native / locale-aware numerals |
+| 8 | LTR-native `<input type="tel\|email\|url\|number">` with no `dir` | flag — add `dir="ltr"` so the value & caret don't jump |
+| 9 | React Native physical style in `StyleSheet.create` (`marginLeft`, `left`, `textAlign:'left'`) | flag — use RN logical (`marginStart`, `start`, `textAlign:'auto'`) |
 
 ## Before → after
 
@@ -72,7 +88,34 @@ miraat ships an **MCP server**, so Cursor / Claude / Windsurf can call it *while
 }
 ```
 
-Tools: **`miraat_scan`** (scan a path) and **`miraat_check_code`** (send a snippet → get the fixed code back). The `rtlint_*` and legacy `rtl_*` tool names still resolve to the same handlers.
+RTL tools: **`miraat_scan`** (scan a path), **`miraat_check_code`** (snippet → findings + fixed code), and **`miraat_fix_code`** — send a snippet, get the **corrected code back** up front with the judgment calls (icons/dir/fonts/bidi/numerals) listed separately to decide. Call `miraat_fix_code` before proposing any UI code and the RTL bug never ships. The `rtlint_*` and legacy `rtl_*` names resolve to the same handlers.
+
+**The whole suite, one server.** The same MCP also exposes the rest of the Arabic toolchain, so your agent gets every check over one connection:
+
+- **`miraat_type_check`** — Arabic typography & shaping (kashida): broken cursive joins, letter-spacing on Arabic, tofu, script-blind fonts.
+- **`miraat_i18n_check`** — internationalization (lahja): hard-coded strings, missing/empty keys, placeholder drift, CLDR plural completeness.
+- **`miraat_a11y_check`** — accessibility (daleel): WCAG 2.2 AA + the Saudi DGA Platforms-Code.
+
+Each takes a `path`; the packs are optional — an unavailable one returns a one-line `npm i -D <pack>` hint instead of failing.
+
+## Use it in your editor (LSP)
+
+miraat ships a **Language Server** — one binary that gives you **live RTL squiggles as you type** and **quick-fixes**, in every LSP editor (VS Code, Cursor, Windsurf, Neovim, JetBrains). It runs the same engine as the CLI, so your `miraat.config.json` severities and `miraat-disable` comments are honoured in the editor too. There is no other RTL language server.
+
+```bash
+npx -p miraat miraat-lsp        # stdio LSP server
+```
+
+Neovim (built-in LSP) example:
+
+```lua
+vim.lsp.start({ name = 'miraat', cmd = { 'npx', '-p', 'miraat', 'miraat-lsp' },
+  root_dir = vim.fn.getcwd(), filetypes = { 'javascriptreact','typescriptreact','css','scss' } })
+```
+
+It publishes diagnostics on open/change/save and offers a per-finding fix plus **"fix all safe RTL issues in this file"** as code actions.
+
+**VS Code:** install the one-click **[Miraat — RTL / Arabic linter](https://github.com/Otto-OttoSpace/miraat/tree/main/vscode-miraat)** extension — it boots this server for you, adds a status-bar fix-all button, and supports `"editor.codeActionsOnSave": { "source.fixAll.miraat": "explicit" }`.
 
 ## Use it in CI (GitHub Action)
 
@@ -81,6 +124,124 @@ Tools: **`miraat_scan`** (scan a path) and **`miraat_check_code`** (send a snipp
   with:
     path: .
     # fix: true   # optionally apply fixes
+```
+
+Get inline PR annotations via **GitHub code scanning** — emit SARIF and upload it:
+
+```yaml
+- uses: Otto-OttoSpace/miraat@main
+  with:
+    path: .
+    sarif: true            # writes miraat.sarif (does not fail the job)
+- uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: miraat.sarif
+```
+
+Or straight from the CLI: `npx miraat . --sarif > miraat.sarif`.
+
+**Other CI reporters:** `--format github` prints annotations that render inline on the PR diff; `--format gitlab-codequality` and `--format junit` emit the report artifacts GitLab / most CI dashboards ingest.
+
+```yaml
+- run: npx miraat . --format github        # inline PR annotations (step fails on errors)
+```
+
+## Turn it on in a real repo (governance)
+
+A large existing app has RTL debt already. miraat is built to be adoptable on day one — snapshot the debt, then gate CI on *new* debt only:
+
+```bash
+npx miraat . --suppress-all          # writes miraat-baseline.json (file → rule → count)
+npx miraat . --check                 # from now on, fails only on NEW RTL debt
+npx miraat . --prune-suppressions    # after you fix some, shrink the baseline
+```
+
+Tune per rule with an auto-discovered `miraat.config.json` (ESLint-shaped — nothing new to learn):
+
+```jsonc
+{
+  "extends": "miraat:recommended",          // or "miraat:strict" (fixes become errors)
+  "rules": {
+    "hardcoded-dir": "error",
+    "arabic-western-digits": "off"          // off | warn | error
+  }
+}
+```
+
+Keep a legitimately LTR block quiet with an inline escape hatch (works in any comment syntax):
+
+```css
+/* miraat-disable-next-line css-logical -- phone-number field is intentionally LTR */
+.phone { text-align: left; }
+```
+
+`miraat-disable-line`, block `miraat-disable` / `miraat-enable`, `.miraatignore` (+ your `.gitignore`), and
+`--report-unused-disable-directives` all work as you'd expect. Exit codes: a plain scan fails on unaddressed
+**error**-level findings; `--check` fails on **any** finding beyond the baseline (the CI gate).
+
+## Get one number: the RTL Score
+
+```bash
+npx miraat . --score          # → Miraat RTL Score  100/100  (A)
+npx miraat . --score --json    # { "score": 100, "grade": "A", ... }
+```
+
+100 = clean. Judgment-call flags weigh double the mechanical fixes, and penalties are normalized by
+how much code was scanned — so one bad file doesn't tank a large, mostly-correct repo. Grades:
+A ≥ 90 · B ≥ 75 · C ≥ 60 · D ≥ 40 · F.
+
+**Show it off — the RTL Score badge:**
+
+```bash
+npx miraat . --badge > rtl-score.svg    # shields-style SVG (score + grade, colored A→F)
+```
+```md
+![RTL Score](rtl-score.svg)             <!-- in your README -->
+```
+
+**Shareable proof — the HTML Correctness Report:**
+
+```bash
+npx miraat . --report                   # → miraat-report.html (self-contained; opens & prints anywhere)
+npx miraat . --report audit.html        # custom filename
+```
+
+One page: the RTL Score, a by-rule breakdown, and every finding with its file/line and fix. No external assets. It's the artifact you hand a client or ship with a design system to *prove* the RTL is correct — checked against the ruleset, not a claim.
+
+## Use it as an ESLint / stylelint rule
+
+RTL issues in the lint run you already have:
+[`eslint-plugin-miraat`](https://github.com/Otto-OttoSpace/miraat/tree/main/eslint-plugin-miraat)
+(JS/TS/JSX) and
+[`stylelint-plugin-miraat`](https://github.com/Otto-OttoSpace/miraat/tree/main/stylelint-plugin-miraat)
+(CSS/SCSS/LESS):
+
+```js
+// eslint.config.js (flat, ESLint 9+)
+import miraat from "eslint-plugin-miraat";
+export default [ miraat.configs["flat/recommended"] ];
+```
+
+```jsonc
+// .stylelintrc.json
+{ "plugins": ["stylelint-plugin-miraat"], "rules": { "miraat/rtl": true } }
+```
+
+## Use it as a git hook (pre-commit)
+
+```yaml
+# .pre-commit-config.yaml
+- repo: https://github.com/Otto-OttoSpace/miraat
+  rev: v0.11.0
+  hooks:
+    - id: miraat
+```
+
+Or with husky + lint-staged:
+
+```jsonc
+// package.json
+"lint-staged": { "*.{js,jsx,ts,tsx,css,scss,vue,svelte,html}": "miraat --check" }
 ```
 
 ## Roadmap → Miraat Pro
@@ -99,4 +260,4 @@ MIT © 2026
 
 The Miraat suite is free and open-source (MIT). If it helps you ship correct Arabic/RTL, please consider [sponsoring on GitHub](https://github.com/sponsors/Otto-OttoSpace) — it funds maintenance and new rules.
 
-Using it in a commercial product, in CI, or need the private **DGA compliance** rule pack? A **Miraat Pro** commercial licence — commercial use, a hosted CI audit that gates PRs ([miraat-action](https://github.com/Otto-OttoSpace/miraat-action)), and priority support — is available. Email **work@ottospace.co** and we'll set you up.
+Using it in a commercial product, in CI, or need the private **DGA Platforms-Code rule pack**? A **Miraat Pro** commercial licence — commercial use, a hosted CI audit that gates PRs ([miraat-action](https://github.com/Otto-OttoSpace/miraat-action)), and priority support — is available. Email **work@ottospace.co** and we'll set you up.

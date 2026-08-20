@@ -1,19 +1,21 @@
 {
   "name": "miraat",
-  "version": "0.9.0",
+  "version": "0.12.0",
   "description": "Find & fix the RTL mistakes AI code tools keep making — for Arabic, Hebrew, Syriac, Thaana, N’Ko & Adlam. AST-verified logical CSS, mirrored Tailwind utilities, an MCP server, and an AI-rules file so your agent stops reintroducing them. (formerly rtlint)",
   "bin": {
     "miraat": "bin/miraat.js",
     "miraat-mcp": "mcp/miraat-mcp.js",
+    "miraat-lsp": "lsp/miraat-lsp.js",
     "rtlint": "bin/miraat.js",
     "rtlint-mcp": "mcp/miraat-mcp.js"
   },
   "type": "commonjs",
   "scripts": {
-    "test": "node --test test/run.js test/init-rules.test.js test/mcp-security.test.js"
+    "test": "node --test test/run.js test/init-rules.test.js test/mcp-security.test.js test/sarif.test.js test/score.test.js test/packs.test.js test/governance.test.js test/format.test.js test/lsp.test.js test/coverage.test.js test/report.test.js test/snapshot.test.js test/css-in-js.test.js test/tailwind-v4.test.js test/markup-directional.test.js"
   },
   "keywords": [
     "rtl",
+    "linter",
     "rtlint",
     "miraat",
     "arabic",
@@ -27,7 +29,8 @@
     "ai",
     "cursor",
     "claude",
-    "bidi"
+    "bidi",
+    "sarif"
   ],
   "author": "Othmane Morad",
   "license": "MIT",
@@ -44,6 +47,7 @@
   },
   "files": [
     "bin",
+    "lsp",
     "lib",
     "mcp",
     "action.yml",
@@ -55,8 +59,13 @@
   "dependencies": {
     "@babel/parser": "^8.0.4",
     "@babel/traverse": "^8.0.4",
-    "@ottospace/rtl-scripts": "git+https://github.com/Otto-OttoSpace/rtl-scripts.git#d8a271fbe3a8ccc2df9dd5ac1f20552dada35f94",
+    "@ottospace/rtl-scripts": "^1.0.0",
     "postcss": "^8.5.23"
+  },
+  "optionalDependencies": {
+    "kashida": "^0.6.1",
+    "lahja": "^0.5.1",
+    "daleel": "^0.7.0"
   },
   "funding": {
     "type": "github",

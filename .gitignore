@@ -4,3 +4,8 @@ node_modules
 # secrets
 .env
 .env.*
+
+# miraat scan cache (local, per-machine)
+.miraatcache
+AUDIT.md
+ROADMAP-TO-THE-END.md

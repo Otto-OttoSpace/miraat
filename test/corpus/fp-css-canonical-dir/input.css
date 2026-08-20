@@ -1,2 +1,4 @@
 [dir="rtl"] .box { margin-left: 4px; }
 .rtl { direction: rtl; }
+:root[dir="rtl"] { --icon-flip: scaleX(-1); }
+.num { unicode-bidi: isolate; direction: ltr; }

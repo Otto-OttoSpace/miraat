@@ -11,11 +11,26 @@ inputs:
   fix:
     description: 'Apply safe auto-fixes and fail if any remain'
     default: 'false'
+  sarif:
+    description: 'Write a SARIF report to `sarif-file` for GitHub code scanning (does not fail the job)'
+    default: 'false'
+  sarif-file:
+    description: 'Path to write the SARIF report to'
+    default: 'miraat.sarif'
+outputs:
+  sarif-file:
+    description: 'Path of the written SARIF report (when sarif=true)'
+    value: ${{ steps.scan.outputs.sarif-file }}
 runs:
   using: 'composite'
   steps:
-    - shell: bash
+    - id: scan
+      shell: bash
       run: |
+        if [ "${{ inputs.sarif }}" = "true" ]; then
+          node "${{ github.action_path }}/bin/miraat.js" "${{ inputs.path }}" --sarif > "${{ inputs.sarif-file }}"
+          echo "sarif-file=${{ inputs.sarif-file }}" >> "$GITHUB_OUTPUT"
+        fi
         FLAG=""
         if [ "${{ inputs.fix }}" = "true" ]; then FLAG="--fix"; fi
         node "${{ github.action_path }}/bin/miraat.js" "${{ inputs.path }}" $FLAG
