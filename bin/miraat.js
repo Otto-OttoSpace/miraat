@@ -659,6 +659,12 @@ function main() {
   else if (fixCount) console.log(`→ run \x1b[1mmiraat ${target} --fix\x1b[0m to apply the ${fixCount} safe fixes. The FLAGs need your eye (that's the part AI can't do).`);
   if (!fixCount && !flagCount) console.log(`✓ clean — no RTL issues found.${note ? '  ' + note : ''}`);
 
+  // Gentle funnel footer — interactive terminals only (never in CI, pipes, or --json,
+  // which returns above), so it can't add noise to logs or break machine consumers.
+  if (process.stdout.isTTY) {
+    console.log(`\n\x1b[2m★ useful? star \x1b[0m\x1b[4mhttps://github.com/Otto-OttoSpace/miraat\x1b[0m\x1b[2m  ·  ♥ sponsor \x1b[0m\x1b[4mhttps://github.com/sponsors/Otto-OttoSpace\x1b[0m`);
+  }
+
   process.exit(exitCode());
 }
 

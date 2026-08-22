@@ -14,6 +14,8 @@ AI now writes most of the UI code in the world — and it is quietly, consistent
 
 `miraat` scans your React / Next / Tailwind / CSS, **auto-fixes the mechanical RTL mistakes**, flags the ones that need a human eye, and writes an **AI-rules file** so your agent (Cursor, Claude, Copilot) stops reintroducing them. It's script-aware: physical→logical, `dir` and mirrored-icon guidance fire for **all** RTL scripts, while script-specific checks (like Western digits in a native-numeral script) fire only where they're actually wrong — Arabic/Thaana/N'Ko/Adlam carry their own numerals; Hebrew and Syriac use Western digits, so those are never falsely flagged.
 
+> **▶ Try it in 10 seconds** — [paste your code in the playground](https://dev.ottospace.co/miraat/playground/) (runs in your browser, nothing uploaded), or run `npx miraat .` below.
+
 ```bash
 npx miraat .            # scan and report
 npx miraat . --fix      # apply the safe fixes (physical → logical)
@@ -22,7 +24,7 @@ npx miraat . --dry-run  # show what --fix would change, but write nothing
 npx miraat . --init-rules   # inject RTL rules into your AI agents (Claude/Cursor/Gemini/Windsurf/Cline/Copilot/Codex)
 ```
 
-> Runs straight from the repo, no install: `npx github:Otto-OttoSpace/miraat . --fix`
+> No install needed — `npx miraat` fetches the published package and runs. Prefer a live demo? The [hosted audit](https://dev.ottospace.co/miraat/audit/) takes a URL or pasted code and returns a shareable A–F report.
 
 ## One command, the whole suite
 
