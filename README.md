@@ -1,5 +1,11 @@
 # Miraat (مرآة)
 
+[![npm](https://img.shields.io/npm/v/miraat?color=cb3837&logo=npm)](https://www.npmjs.com/package/miraat)
+[![CI](https://img.shields.io/github/actions/workflow/status/Otto-OttoSpace/miraat/ci.yml?branch=main&label=CI&logo=github)](https://github.com/Otto-OttoSpace/miraat/actions)
+[![tests](https://img.shields.io/badge/tests-256%20passing-brightgreen)](https://github.com/Otto-OttoSpace/miraat/tree/main/test)
+[![license](https://img.shields.io/npm/l/miraat?color=blue)](./LICENSE)
+[![sponsor](https://img.shields.io/badge/sponsor-%E2%9D%A4-ea4aaa?logo=githubsponsors)](https://github.com/sponsors/Otto-OttoSpace)
+
 **Find & fix the RTL mistakes AI code tools keep making — for every right-to-left script.**
 
 > Formerly **rtlint**. *Miraat* (مرآة) is Arabic for "mirror" — mirroring left↔right is the whole job. The `rtlint` command and the `rtlint_*` MCP tools still work as aliases.
@@ -30,7 +36,7 @@ npx miraat a11y .       # DGA Platforms-Code + WCAG   (daleel)
 npx miraat all  .       # run every pack, one after another
 ```
 
-Packs are **optional dependencies** — add the ones you use (`npm i -D kashida lahja daleel`) or run any standalone. `miraat` lazy-loads each pack and prints a one-line install hint if it's missing; the bare RTL scan never pulls them, so the base install stays lean. Each pack keeps its own audited engine (no monolith), and `npx miraat . --score` gives the single RTL Score.
+The packs ship **with `miraat`**, so `npx miraat all .` runs the whole suite out of the box — no extra install. Each pack keeps its own audited engine (no monolith), so you can also install and run any of them standalone (`npx kashida .`, `npx lahja .`, `npx daleel .`), and `npx miraat . --score` gives the single RTL Score. The base RTL engine itself is dependency-light (Babel + PostCSS); the packs' heavier, feature-specific extras (e.g. a headless browser for live rendering) stay optional and load only when you use them.
 
 ## Zero-corruption by design
 
@@ -96,7 +102,7 @@ RTL tools: **`miraat_scan`** (scan a path), **`miraat_check_code`** (snippet →
 - **`miraat_i18n_check`** — internationalization (lahja): hard-coded strings, missing/empty keys, placeholder drift, CLDR plural completeness.
 - **`miraat_a11y_check`** — accessibility (daleel): WCAG 2.2 AA + the Saudi DGA Platforms-Code.
 
-Each takes a `path`; the packs are optional — an unavailable one returns a one-line `npm i -D <pack>` hint instead of failing.
+Each takes a `path`. The packs ship with `miraat`; in the rare case one is unavailable, the tool returns a one-line install hint instead of failing.
 
 ## Use it in your editor (LSP)
 

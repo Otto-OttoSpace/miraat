@@ -12,8 +12,8 @@ only fires where the script has its own numerals (Arabic, Thaana, N'Ko, Adlam) a
 Hebrew or Syriac.
 
 ## Use it
-- CLI: `npx github:Otto-OttoSpace/miraat . --fix` (the `rtlint` command still works)
-- MCP server: run `miraat-mcp` (tools: `miraat_scan`, `miraat_check_code`; `rtlint_*` / `rtl_*` aliases) so agents call it in-loop
+- CLI: `npx miraat . --fix` (published on npm; the `rtlint` command still works)
+- MCP server: run `miraat-mcp` (tools: `miraat_scan`, `miraat_fix_code` — call BEFORE proposing code, it returns the corrected source; `miraat_check_code`) so agents call it in-loop
 - AI rule file: `miraat --init-rules` writes RTL-RULES.md
 
 ## Rules for any agent writing RTL UI
