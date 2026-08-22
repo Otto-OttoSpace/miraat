@@ -18,9 +18,11 @@ const { severityFor, loadConfig } = require('../lib/config');
 const { applyDirectives } = require('../lib/directives');
 const VERSION = require('../package.json').version;
 
-// LSP DiagnosticSeverity. Judgment-call flags → Warning (stand out); mechanical
-// fixes → Information (subtle) — RTL issues are never compile errors, so we
-// never use red Error and never alarm the user.
+// LSP DiagnosticSeverity. By default we stay gentle — judgment-call flags →
+// Warning (stand out), mechanical fixes → Information (subtle) — since RTL
+// issues aren't compile errors. But if a team EXPLICITLY sets a rule to `error`
+// in their config, the editor shows a red Error to mirror the CI hard-fail they
+// opted into (naturalSeverity's default `error` for flags is NOT treated as red).
 const SEV = { Error: 1, Warning: 2, Information: 3, Hint: 4 };
 
 // ── stdio JSON-RPC with LSP Content-Length framing (byte-accurate) ──
@@ -71,7 +73,8 @@ function computeDiagnostics(uri, text) {
   const lines = text.split('\n');
   const diags = [];
   for (const f of kept) {
-    const level = severityFor(f, rules);
+    const configured = rules && rules[f.rule];   // the user's explicit severity, if any
+    const level = configured || severityFor(f, rules);
     if (level === 'off') continue;
     const lineIdx = Math.max(0, (f.line || 1) - 1);
     const lineText = lines[lineIdx] || '';
@@ -82,7 +85,9 @@ function computeDiagnostics(uri, text) {
     }
     diags.push({
       range: { start: { line: lineIdx, character: startCh }, end: { line: lineIdx, character: endCh } },
-      severity: level === 'error' ? SEV.Warning : SEV.Information,
+      severity: configured === 'error' ? SEV.Error      // explicitly opted-in → red, mirrors CI
+              : level === 'error'      ? SEV.Warning     // judgment-call flag → yellow (advisory)
+              : SEV.Information,                          // mechanical fix → subtle
       source: 'miraat',
       code: f.rule,
       message: f.to ? `${f.msg} (${f.from} → ${f.to})` : `${f.msg} (${f.from})`,
