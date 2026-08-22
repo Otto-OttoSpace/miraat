@@ -53,6 +53,26 @@ test('input-dir does NOT fire on a data-dir / lookalike attribute', () => {
   assert.equal(scan('a.jsx', 'export const F=()=>(<input type="tel" data-dir="x"/>);').length, 1);
 });
 
+// ── hardcoded-dir must AGREE with input-dir: the dir="ltr" that input-dir
+//    prescribes on an LTR-native input is correct, not a hard-coded-direction bug.
+test('hardcoded-dir does NOT flag the dir="ltr" input-dir asks for on LTR-native inputs', () => {
+  const hd = b => scanAll('a.jsx', b).filter(f => f.rule === 'hardcoded-dir').length;
+  assert.equal(hd('export const F=()=>(<input type="tel" dir="ltr"/>);'), 0);
+  assert.equal(hd('export const F=()=>(<input type="email" dir="ltr"/>);'), 0);
+  // and the whole form of correct LTR-native inputs is fully clean (no rule fires)
+  assert.equal(
+    scanAll('a.jsx', 'export const F=()=>(<form><input type="tel" dir="ltr"/><input type="url" dir="ltr"/></form>);').length,
+    0, 'correctly-built RTL form must score clean');
+});
+
+test('hardcoded-dir STILL flags a hard-coded dir on a non-input element', () => {
+  const hd = (n, b) => scanAll(n, b).filter(f => f.rule === 'hardcoded-dir').length;
+  assert.equal(hd('a.jsx', 'export const F=()=>(<div dir="ltr">x</div>);'), 1, 'div dir must still flag');
+  assert.equal(hd('a.html', '<section dir="rtl">x</section>'), 1);
+  // dir="rtl" on an input is NOT what input-dir prescribes (it wants ltr) → still a bug
+  assert.equal(hd('a.jsx', 'export const F=()=>(<input type="tel" dir="rtl"/>);'), 1);
+});
+
 // ── box-shadow / text-shadow horizontal offset (flippable-transform family) ──
 function shadowHits(name, body) {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), 'miraat-shadow-'));
